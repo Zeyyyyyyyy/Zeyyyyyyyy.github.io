@@ -12,7 +12,7 @@ class Circle {
   draw() {
     this.context.fillStyle = this.color
     this.context.beginPath()
-    this.context.arc(this.position.x, this.position.y, 2, 0, Math.PI * 2)
+    this.context.arc(this.position.x, this.position.y, 2, 0, Math.PI * 4)
     this.context.fill()
   }
 
