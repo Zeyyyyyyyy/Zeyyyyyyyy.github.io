@@ -4,13 +4,75 @@
   
     
     <entry>
-      <title>Jsoup爬虫相关应用</title>
-      <link href="/2020/07/20/jsoup-pa-chong-xiang-guan-ying-yong/"/>
-      <url>/2020/07/20/jsoup-pa-chong-xiang-guan-ying-yong/</url>
+      <title>算法笔记(1)</title>
+      <link href="/2020/07/20/suan-fa-bi-ji-1/"/>
+      <url>/2020/07/20/suan-fa-bi-ji-1/</url>
       
         <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
       
       
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>考研笔记(1)</title>
+      <link href="/2020/07/20/kao-yan-bi-ji-1/"/>
+      <url>/2020/07/20/kao-yan-bi-ji-1/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 考研 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 考研 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Jsoup爬虫相关应用</title>
+      <link href="/2020/07/20/jsoup-pa-chong-xiang-guan-ying-yong/"/>
+      <url>/2020/07/20/jsoup-pa-chong-xiang-guan-ying-yong/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>​        初步做的是一个通过实时监测爬取网站数据来起到水位报警的APP，爬虫采用的是Java里面的Jsoup框架，其实爬虫框架都差不太多，主要是Android开发经验不足，导致各种bug和版本适配的问题，在这里准备做一个总结。</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> Android </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Android </tag>
+            
+        </tags>
       
     </entry>
     
