@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>Jsoup爬虫相关应用</title>
+      <link href="/2020/07/20/jsoup-pa-chong-xiang-guan-ying-yong/"/>
+      <url>/2020/07/20/jsoup-pa-chong-xiang-guan-ying-yong/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>近年探案剧的一些感受</title>
       <link href="/2020/02/22/jin-nian-tan-an-ju-de-yi-xie-gan-shou/"/>
       <url>/2020/02/22/jin-nian-tan-an-ju-de-yi-xie-gan-shou/</url>

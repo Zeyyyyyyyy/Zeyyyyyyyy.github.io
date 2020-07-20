@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zeyyyy.com/"/>
-  <updated>2020-02-23T08:42:08.023Z</updated>
+  <updated>2020-07-20T14:59:56.974Z</updated>
   <id>https://zeyyyy.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Jsoup爬虫相关应用</title>
+    <link href="https://zeyyyy.com/2020/07/20/jsoup-pa-chong-xiang-guan-ying-yong/"/>
+    <id>https://zeyyyy.com/2020/07/20/jsoup-pa-chong-xiang-guan-ying-yong/</id>
+    <published>2020-07-20T14:59:56.000Z</published>
+    <updated>2020-07-20T14:59:56.974Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>近年探案剧的一些感受</title>
