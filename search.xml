@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>有时候，我会想起那只猫</title>
+      <link href="/2020/07/22/you-shi-hou-wo-hui-xiang-qi-na-zhi-mao/"/>
+      <url>/2020/07/22/you-shi-hou-wo-hui-xiang-qi-na-zhi-mao/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://zeybolg-1301359300.cos.ap-beijing.myqcloud.com/poem.jpg" alt=""></p><p>在江边花馆藏起夜晚</p><p>找到人海中你的方向道一声晚安</p><p>看是非在青春不停打转</p><p>找寻 </p><p>短叹 </p><br><p>回想路上 </p><p>过去现在难割舍的喜欢 </p><p>在沉迷安静的时候 </p><p>给自己的梦一个交代 </p><br><p>习惯了平凡 </p><p>却不懂得什么叫做孤单 </p><p>那份情怀想的深刻 </p><p>让人失落又不自在 </p><br><p>日光浸透阁楼 </p><p>洒下光阴在写下你的桌台 </p><p>回到最初跟着生活脚步加快 </p><p>一段故事凋零过早或是过晚 </p><p>倾谈 </p><p>无憾</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随笔 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随笔 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>算法笔记(1)</title>
       <link href="/2020/07/20/suan-fa-bi-ji-1/"/>
       <url>/2020/07/20/suan-fa-bi-ji-1/</url>
