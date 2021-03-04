@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://zeyyyy.com/"/>
-  <updated>2020-07-22T15:43:01.470Z</updated>
+  <updated>2021-03-04T16:06:30.386Z</updated>
   <id>https://zeyyyy.com/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>面试</title>
+    <link href="https://zeyyyy.com/2021/03/04/mian-shi/"/>
+    <id>https://zeyyyy.com/2021/03/04/mian-shi/</id>
+    <published>2021-03-04T15:57:16.000Z</published>
+    <updated>2021-03-04T16:06:30.386Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="面试" scheme="https://zeyyyy.com/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+      <category term="面试" scheme="https://zeyyyy.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>EngLish Learn</title>
+    <link href="https://zeyyyy.com/2021/03/04/english-learn/"/>
+    <id>https://zeyyyy.com/2021/03/04/english-learn/</id>
+    <published>2021-03-04T15:56:35.000Z</published>
+    <updated>2021-03-04T15:59:44.650Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="英语学习" scheme="https://zeyyyy.com/categories/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="英语学习" scheme="https://zeyyyy.com/tags/%E8%8B%B1%E8%AF%AD%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>有时候，我会想起那只猫</title>
