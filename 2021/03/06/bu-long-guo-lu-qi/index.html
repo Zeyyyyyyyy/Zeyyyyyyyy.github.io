@@ -4,28 +4,13 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="有时候，我会想起那只猫, 小白 | 算法 | 机器学习 | 影评 | 随笔 | 学习经验">
+    <meta name="keywords" content="布隆过滤器, 小白 | 算法 | 机器学习 | 影评 | 随笔 | 学习经验">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="
-在江边花馆藏起夜晚
-找到人海中你的方向道一声晚安
-看是非在青春不停打转
-找寻 
-短叹 
-
-
-回想路上 
-过去现在难割舍的喜欢 
-在沉迷安静的时候 
-给自己的梦一个交代 
-
-
-习惯了平凡 
-却不懂得什么叫做孤单 
-那份情怀想的深刻 
-让人失">
+    <meta name="description" content="# 
+布隆过滤器1、背景：先来复习一下Redis用作缓存系统容易发生的问题：
+1.缓存穿透：查询一个一定不存在的数据，由于缓存时不命中时写入的，但如果存储层查不到数据则不写入缓存，因此这个不存在的数据每次都要去存储层去查询，失去了缓存的意义">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -33,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>有时候，我会想起那只猫 | 小郑Blog</title>
+    <title>布隆过滤器 | 小郑Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -307,13 +292,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        有时候，我会想起那只猫
+                        布隆过滤器
                     </div>
                 </div>
             </div>
@@ -424,8 +409,8 @@
                     
                     <div class="article-tag">
                         
-                        <a href="/tags/随笔/" target="_blank">
-                            <span class="chip bg-color">随笔</span>
+                        <a href="/tags/面试/" target="_blank">
+                            <span class="chip bg-color">面试</span>
                         </a>
                         
                     </div>
@@ -436,8 +421,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                        <a href="/categories/随笔/" class="post-category" target="_blank">
-                            随笔
+                        <a href="/categories/面试/" class="post-category" target="_blank">
+                            面试
                         </a>
                         
                     </div>
@@ -448,7 +433,7 @@
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-22
+                    2021-03-06
                 </div>
 
                 <div class="post-author info-break-policy">
@@ -462,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    196
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
                 
@@ -485,32 +470,42 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://zeybolg-1301359300.cos.ap-beijing.myqcloud.com/poem.jpg" alt=""></p>
-<p>在江边花馆藏起夜晚</p>
-<p>找到人海中你的方向道一声晚安</p>
-<p>看是非在青春不停打转</p>
-<p>找寻 </p>
-<p>短叹 </p>
-<br>
-
-<p>回想路上 </p>
-<p>过去现在难割舍的喜欢 </p>
-<p>在沉迷安静的时候 </p>
-<p>给自己的梦一个交代 </p>
-<br>
-
-<p>习惯了平凡 </p>
-<p>却不懂得什么叫做孤单 </p>
-<p>那份情怀想的深刻 </p>
-<p>让人失落又不自在 </p>
-<br>
-
-<p>日光浸透阁楼 </p>
-<p>洒下光阴在写下你的桌台 </p>
-<p>回到最初跟着生活脚步加快 </p>
-<p>一段故事凋零过早或是过晚 </p>
-<p>倾谈 </p>
-<p>无憾</p>
+                <p># </p>
+<h1 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h1><h2 id="1、背景："><a href="#1、背景：" class="headerlink" title="1、背景："></a>1、背景：</h2><p>先来复习一下Redis用作缓存系统容易发生的问题：</p>
+<h3 id="1-缓存穿透："><a href="#1-缓存穿透：" class="headerlink" title="1.缓存穿透："></a>1.缓存穿透：</h3><p>查询一个一定不存在的数据，由于缓存时不命中时写入的，但如果存储层查不到数据则不写入缓存，因此这个不存在的数据每次都要去存储层去查询，失去了缓存的意义，一旦流量大DB就挂掉。</p>
+<h3 id="2-缓存雪崩："><a href="#2-缓存雪崩：" class="headerlink" title="2.缓存雪崩："></a>2.缓存雪崩：</h3><p>在设置数据缓存时采用了相同的过期时间，倒是缓存在同一时刻同时失效，请求转发到DB数据库，DB压力过大崩掉。</p>
+<h3 id="3-缓存击穿："><a href="#3-缓存击穿：" class="headerlink" title="3.缓存击穿："></a>3.缓存击穿：</h3><p>缓存在某时间点过期时，恰好这个时间点对这个Key有大量并发请求过来，这些请求发现缓存过期都会从DB加载回缓存，这时候大并发的请求可能会把后端DB压垮。</p>
+<h2 id="2、布隆过滤器："><a href="#2、布隆过滤器：" class="headerlink" title="2、布隆过滤器："></a>2、布隆过滤器：</h2><h3 id="1-简介："><a href="#1-简介：" class="headerlink" title="1.简介："></a>1.简介：</h3><p>当往简单数组或列表插入新数据时，通常不会根据插入项的值确定其索引值，这种时候当你需要在列表中搜索相应值时需要遍历已有的集合，若集合存在大量的数据就会影响效率。</p>
+<p>这是我们可以考虑利用哈希表，通过对数据项值进行<strong>哈希处理</strong>获得该值对应的键或索引值，当你需要判断列表是否存在该值，只需要对值进行哈希处理并在相应的索引位置进行搜索即可，这种搜索是非常快的。</p>
+<p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://user-gold-cdn.xitu.io/2019/11/30/16eba609826ea165?imageslim" alt="img"></p>
+<p>但是布隆过滤器对值是否在集合中是有一定<strong>误判率</strong>的，至于为什么产生误判，原因如下：</p>
+<p>BF过滤器中本质是由长度为m的位向量组成，最初值均为0，如下图：</p>
+<p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://user-gold-cdn.xitu.io/2019/11/30/16eba609849bd878?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<p>当将数据项添加到布隆过滤器中时会提供k个不同的哈希函数，产生多个索引值，并将位置值改为1，而哈希表使用的是单个哈希函数。</p>
+<p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://user-gold-cdn.xitu.io/2019/11/30/16eba60983fcefcd?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<p>如上图，当输入内容时，哈希函数将分别输出2，4，6，将位置改为1。</p>
+<p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://user-gold-cdn.xitu.io/2019/11/30/16eba60984f70b5a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<p>当输入另一个值”kakupo“，哈希函数则输出3，4，7，而对于已经标记的索引位不做变化。</p>
+<p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://user-gold-cdn.xitu.io/2019/11/30/16eba60985ae27ec?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img"></p>
+<p>由上图发现，当我们搜索”fullstack“，发现相应位早就置为1了，意味着该字符串可能已经插入到集合中，事实上这就是误报的情形，产生的原因即是一种类似哈希表的巧合导致不同的的元素存储在相同的比特位上。<br>$$<br>FPP = (1 - e^{-kn/m})^k<br>$$<br>n是已经添加的元素的数量，k为哈希的次数，m为布隆过滤器的长度。</p>
+<p>极端情况下，布隆过滤器没有空闲空间时，每一次查询都会返回true，也就意味着m的选择取决于期望预计添加元素的数量，并且m要远大于n。</p>
+<p>在实际情况中，布隆过滤器的长度m可以根据规定的误判率计算：<br>$$<br>m = -\frac{nlnP_{fp}}{(ln2)^2}<br>$$<br>因此，我们当搜索一个值时，若该值经过k个哈希函数运算后的任何一个索引值为“0”，那么该值将不在集合中，但若值为“1”，则说明可能在集合中。</p>
+<h3 id="2-应用"><a href="#2-应用" class="headerlink" title="2.应用"></a>2.应用</h3><ul>
+<li><p>网页爬虫对 URL 去重，避免爬取相同的 URL 地址；</p>
+</li>
+<li><p>反垃圾邮件，从数十亿个垃圾邮件列表中判断某邮箱是否垃圾邮箱；</p>
+</li>
+<li><p>Google Chrome 使用布隆过滤器识别恶意 URL；</p>
+</li>
+<li><p>Medium 使用布隆过滤器避免推荐给用户已经读过的文章；</p>
+</li>
+<li><p>Google BigTable，Apache HBbase 和 Apache Cassandra 使用布隆过滤器减少对不存在的行和列的查找。 </p>
+</li>
+<li><p>除了上述的应用场景之外，布隆过滤器还有一个应用场景就是解决<strong>缓存穿透</strong>的问题。所谓的缓存穿透就是服务调用方每次都是查询不在缓存中的数据，这样每次服务调用都会到数据库中进行查询，如果这类请求比较多的话，就会导致数据库压力增大，这样缓存就失去了意义。</p>
+</li>
+</ul>
+<p>本文参考链接1：<a href="https://juejin.cn/post/6844904007790673933" target="_blank" rel="noopener">https://juejin.cn/post/6844904007790673933</a></p>
+<p>本文参考链接2：<a href="https://blog.csdn.net/zeb_perfect/article/details/54135506" target="_blank" rel="noopener">https://blog.csdn.net/zeb_perfect/article/details/54135506</a></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -563,9 +558,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《有时候，我会想起那只猫》
+                    《布隆过滤器》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2020/07/22/you-shi-hou-wo-hui-xiang-qi-na-zhi-mao/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/06/bu-long-guo-lu-qi/" property="cc:attributionName"
                rel="cc:attributionURL">
                 郑毅
             </a> 采用
@@ -871,44 +866,32 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/04/english-learn/">
+                <a href="/2021/03/06/qt-mian-shi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="EngLish Learn">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="QT面试">
                         
-                        <span class="card-title">EngLish Learn</span>
+                        <span class="card-title">QT面试</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            透过电影的英语学习经历
+                            
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-04
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-06
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/英语学习/" class="post-category" target="_blank">
-                                    英语学习
-                                </a>
-                            
-                            
                         </span>
                     </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/英语学习/" target="_blank">
-                        <span class="chip bg-color">英语学习</span>
-                    </a>
-                    
                 </div>
                 
             </div>
@@ -920,31 +903,31 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/20/suan-fa-bi-ji-1/">
+                <a href="/2021/03/04/mian-shi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="算法笔记(1)">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="面试">
                         
-                        <span class="card-title">算法笔记(1)</span>
+                        <span class="card-title">面试</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            算法刷题笔记
+                            面试的知识总结吧（持续更新）
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-07-20
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-03-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/算法/" class="post-category" target="_blank">
-                                    算法
+                            <a href="/categories/面试/" class="post-category" target="_blank">
+                                    面试
                                 </a>
                             
                             
@@ -954,8 +937,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/算法/" target="_blank">
-                        <span class="chip bg-color">算法</span>
+                    <a href="/tags/面试/" target="_blank">
+                        <span class="chip bg-color">面试</span>
                     </a>
                     
                 </div>
@@ -1102,6 +1085,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
 
     <footer class="page-footer bg-color">
     <div class="container row center-align">
