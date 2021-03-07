@@ -8,10 +8,8 @@
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="
-        document.querySelectorAll(&#39;.github-emoji&#39;)
-          .forEach(el =&gt; {
-            if (!el.dataset.src) { return">
+    <meta name="description" content="1、QT创建多线程的方法1.继承QThread的线程QThread只有run函数是在新线程里，其他所有的函数都在QThread生成的线程里。
+2.把一个继承于QObject的类转移到Thread里这种方法在Qt4.8后比较建议使用，因为这种">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -293,7 +291,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -409,11 +407,24 @@
                 <div class="col s7">
                     
                     <div class="article-tag">
-                        <span class="chip bg-color">无标签</span>
+                        
+                        <a href="/tags/面试/" target="_blank">
+                            <span class="chip bg-color">面试</span>
+                        </a>
+                        
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                        <a href="/categories/面试/" class="post-category" target="_blank">
+                            面试
+                        </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -435,14 +446,14 @@
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    52
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    7 分
                 </div>
                 
                 
@@ -458,7 +469,113 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <script>
+                <h1 id="1、QT创建多线程的方法"><a href="#1、QT创建多线程的方法" class="headerlink" title="1、QT创建多线程的方法"></a>1、QT创建多线程的方法</h1><h2 id="1-继承QThread的线程"><a href="#1-继承QThread的线程" class="headerlink" title="1.继承QThread的线程"></a>1.继承QThread的线程</h2><p>QThread只有run函数是在新线程里，其他所有的函数都在QThread生成的线程里。</p>
+<h2 id="2-把一个继承于QObject的类转移到Thread里"><a href="#2-把一个继承于QObject的类转移到Thread里" class="headerlink" title="2.把一个继承于QObject的类转移到Thread里"></a>2.把一个继承于QObject的类转移到Thread里</h2><p>这种方法在Qt4.8后比较建议使用，因为这种方法更加灵活，QObject是Qt框架的基本类，凡涉及到信号槽有关的类都是继承与QObject。</p>
+<p>QObject可以通过<strong>moveToThread(QThread* targetThread)</strong>，通过此可将顶层Object转移到一个新的线程里。而且有个很好的优点便是支持事件循环。</p>
+<p>方法如下：</p>
+<ul>
+<li><p>写一个继承<code>QObject</code>的类，对需要进行复杂耗时逻辑的入口函数声明为槽函数</p>
+</li>
+<li><p>此类在即将生成线程的地方new出来，不能给它设置任何父对象</p>
+</li>
+<li><p>同时声明一个<code>QThread</code>对象，在官方例子里，<code>QThread</code>并没有<code>new</code>出来，这样在析构时就需要调用<code>QThread::wait()</code>，如果是堆分配的话， 可以通过<code>deleteLater</code>来让线程自杀</p>
+</li>
+<li><p>把obj通过<code>moveToThread</code>方法转移到新线程中，此时object已经是在线程中了</p>
+</li>
+<li><p>把线程的<code>finished</code>信号和object的<code>deleteLater</code>槽连接，这个信号槽必须连接，否则会内存泄漏</p>
+</li>
+<li><p>正常连接其他信号和槽（在连接信号槽之前调用<code>moveToThread</code>，不需要处理<code>connect</code>的第五个参数，否则就显示声明用Qt::QueuedConnection来连接）</p>
+</li>
+<li><p>初始化完后调用’QThread::start()’来启动线程</p>
+</li>
+<li><p>在逻辑结束后，调用<code>QThread::quit</code>退出线程的事件循环</p>
+</li>
+<li><pre class="line-numbers language-c++"><code class="language-c++">class Worker : public QObject
+{
+    Q_OBJECT
+
+public slots:
+    void doWork(const QString &parameter) {
+        QString result;
+        /* ... here is the expensive or blocking operation ... */
+        emit resultReady(result);
+    }
+
+signals:
+    void resultReady(const QString &result);
+};
+
+class Controller : public QObject
+{
+    Q_OBJECT
+    QThread workerThread;
+public:
+    Controller() {
+        Worker *worker = new Worker;
+        worker->moveToThread(&workerThread);
+        connect(&workerThread, &QThread::finished, worker, &QObject::deleteLater);
+        connect(this, &Controller::operate, worker, &Worker::doWork);
+        connect(worker, &Worker::resultReady, this, &Controller::handleResults);
+        workerThread.start();
+    }
+    ~Controller() {
+        workerThread.quit();
+        workerThread.wait();
+    }
+public slots:
+    void handleResults(const QString &);
+signals:
+    void operate(const QString &);
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h1 id="QT信号槽机制"><a href="#QT信号槽机制" class="headerlink" title="QT信号槽机制"></a>QT信号槽机制</h1><p>信号和槽常用于对象间的通信，也是QT的主要特性和与其他框架特征区别最大的部分。</p>
+<p>例如：我们想要更改某个内容（Widget），通常要其他widget获悉这一通知，例如要点击“关闭”，我们希望调用“关闭”功能把窗口关掉。</p>
+<p>这时候我们可能想利用<strong>回调</strong>来达到这样的目的，回调即是函数的指针，如果你希望一个处理函数通知你某些事件发生了，你可以传递一个指向其他函数的指针给他，这个处理函数将在适当时调用回调函数。</p>
+<p>不过其有两个缺点：</p>
+<ul>
+<li>他们并不是类型安全，我们不能确定调用者是否将通过正确的参数来调用回调函数</li>
+<li>回调处理函数是紧耦合的，因为调用者必须知道要在什么时候调用哪个回调函数。</li>
+</ul>
+<h2 id="信号-amp-槽"><a href="#信号-amp-槽" class="headerlink" title="信号&amp;槽"></a>信号&amp;槽</h2><p>再来分析一个特定时间，当一个时间发生时，信号发送，QT的窗体（widget）有很多预定义的信号，也可以创建创建widget子类来添加自定义信号。</p>
+<p>槽，是对一个特定信号进行反馈，当然也可以使用预定义好的槽，但通常也会添加自定义槽。</p>
+<ul>
+<li>信号&amp;槽机制是类型安全的，一个信号的参数必须和接受槽的参数匹配，这种匹配机制会使编译器以帮助我们检查类型不匹配的签名。</li>
+<li>信号&amp;槽是松耦合的，一个发出信号的的类不会关心哪一个槽来接受这个信号。</li>
+</ul>
+<p>信号和槽关联是用QObject::connect()函数实现</p>
+<pre class="line-numbers language-c"><code class="language-c"><span class="token function">connect</span><span class="token punctuation">(</span>sender<span class="token punctuation">,</span> <span class="token function">SIGNAL</span><span class="token punctuation">(</span><span class="token function">signal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> receiver<span class="token punctuation">,</span> <span class="token function">SLOT</span><span class="token punctuation">(</span><span class="token function">slot</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>sender 是发射信号的对象的名称，signal() 是信号名称。信号可以看做是特殊的函数，需要带括号，有参数时还需要指明参数。receiver 是接收信号的对象名称，slot() 是槽函数的名称，需要带括号，有参数时还需要指明参数。</p>
+<p>其中有些规则：</p>
+<ul>
+<li>一个信号可以连接多个槽</li>
+<li>多个信号可以连接同一个槽</li>
+<li>一个信号可以连接另外一个信号</li>
+<li>严格的情况下，信号与槽的参数个数和类型需要一致，至少信号的参数不能少于槽的参数。如果不匹配，会出现编译错误或运行错误。</li>
+<li>在使用信号与槽的类中，必须在类的定义中加入宏 Q_OBJECT。</li>
+<li>当一个信号被发射时，与其关联的槽函数通常被立即执行，就像正常调用一个函数一样。只有当信号关联的所有槽函数执行完毕后，才会执行发射信号处后面的代码。</li>
+</ul>
+<h1 id="3、QT元对象系统"><a href="#3、QT元对象系统" class="headerlink" title="3、QT元对象系统"></a>3、QT元对象系统</h1><h3 id="1-元对象系统机制"><a href="#1-元对象系统机制" class="headerlink" title="1.元对象系统机制"></a>1.元对象系统机制</h3><p>它提供了关键的两项技术：信号&amp;槽以及内省（introspection）。</p>
+<p>内省功能对于实现信号和槽是必需的，并且允许应用程 序的开发人员在运行时获得有关 QObject 子类的“元信息”（meta-information），包括 一个含有对象的类名以及它所支持的信号和槽的列表。这一机制也支持属性（广泛用于 Qt 设计师中）和文本翻译（用于国际化），并且它也为 QtScirpt 模块奠定了基础。</p>
+<ul>
+<li><p>Q_OBJECT 宏声明了在每一个 QObject 子类中必须实现的一些内省函数，如 metaObject()、QMetaObject::className()、tr()、qt_metacall()，以及其它一些函数。</p>
+</li>
+<li><p>Qt 的 moc 工具生成了用于由 Q_OBJECT 声明的所有函数和所有信号的实现。</p>
+</li>
+<li><p>像 connect()和 disconnect()这样的 QObject 的成员函数使用这些内省函数来完成 它们的工作。</p>
+</li>
+</ul>
+<h2 id="2-MOC元对象编译器"><a href="#2-MOC元对象编译器" class="headerlink" title="2.MOC元对象编译器"></a>2.MOC元对象编译器</h2><p>元对象编译器读取应用程序的头文件，并生成必要的代码，以支持信号&amp;槽机制。</p>
+<p>qmake 生成的 Makefiles 将自动调用 moc，所有需要使用 moc 的编译规则都会给自动 的包含到 Makefile 文件中 。开发人员无需直接使用 moc 编辑、甚至无需查看生成的代码。</p>
+<p>除了处理信号和槽以外，moc 还支持 Qt 的翻译机制、属性系统及其扩展的运行时类型 信息。</p>
+<p>比如，Q_PROPERTY()宏定义类的属性信息，而 Q_ENUMS()宏则定义在一个类中的枚举 类型列表。 Q_FLAGS()宏定义在一个类中的 flag 枚举类型列表，Q_CLASSINFO()宏则允许 你在一个类的 meta 信息中插入 name/value 对。</p>
+<p>它还使 C++ 程序进行运行时自检成为可 能，并可在所有支持的平台上工作。</p>
+<p>元对象编译器 moc（meta object compiler）对 C++文件中的类声明进行分析并产生用 于初始化元对象的 C++代码，元对象包含全部信号和槽的名字以及指向这些函数的指针。</p>
+<p>要注意的：</p>
+<ul>
+<li>元对象代码是 signal&amp;slot 机制运行所必须的。用 moc 产生的 C++源文件必须与类实现文件一起进行编译和连接，或者用 #include 语句将其包含到类的源文件中。moc 并不扩展 #include 或者#define 宏定义,它只是简单的跳过所遇到的任何预处理指令。</li>
+</ul>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
@@ -822,7 +939,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="面经汇总">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="面经汇总">
                         
                         <span class="card-title">面经汇总</span>
                     </div>
@@ -859,7 +976,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="布隆过滤器">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="布隆过滤器">
                         
                         <span class="card-title">布隆过滤器</span>
                     </div>
@@ -867,9 +984,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            # 
-布隆过滤器1、背景：先来复习一下Redis用作缓存系统容易发生的问题：
-1.缓存穿透：查询一个一定不存在的数据，由于缓存时不命中时写入的，但如果存储层查不到数据则不写入缓存，因此这个不存在的数据每次都要去存储层去查询，失去了缓存的意义
+                            缓存优化的方式之一
                         
                     </div>
                     <div class="publish-info">
@@ -1054,7 +1169,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">25.5k</span>
+            <span class="white-color">27.5k</span>
             
 
             <br>

@@ -8,9 +8,8 @@
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="# 
-布隆过滤器1、背景：先来复习一下Redis用作缓存系统容易发生的问题：
-1.缓存穿透：查询一个一定不存在的数据，由于缓存时不命中时写入的，但如果存储层查不到数据则不写入缓存，因此这个不存在的数据每次都要去存储层去查询，失去了缓存的意义">
+    <meta name="description" content="布隆过滤器1、背景：先来复习一下Redis用作缓存系统容易发生的问题：
+1.缓存穿透：查询一个一定不存在的数据，由于缓存时不命中时写入的，但如果存储层查不到数据则不写入缓存，因此这个不存在的数据每次都要去存储层去查询，失去了缓存的意义，一旦">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -292,7 +291,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -470,8 +469,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p># </p>
-<h1 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h1><h2 id="1、背景："><a href="#1、背景：" class="headerlink" title="1、背景："></a>1、背景：</h2><p>先来复习一下Redis用作缓存系统容易发生的问题：</p>
+                <h1 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h1><h2 id="1、背景："><a href="#1、背景：" class="headerlink" title="1、背景："></a>1、背景：</h2><p>先来复习一下Redis用作缓存系统容易发生的问题：</p>
 <h3 id="1-缓存穿透："><a href="#1-缓存穿透：" class="headerlink" title="1.缓存穿透："></a>1.缓存穿透：</h3><p>查询一个一定不存在的数据，由于缓存时不命中时写入的，但如果存储层查不到数据则不写入缓存，因此这个不存在的数据每次都要去存储层去查询，失去了缓存的意义，一旦流量大DB就挂掉。</p>
 <h3 id="2-缓存雪崩："><a href="#2-缓存雪崩：" class="headerlink" title="2.缓存雪崩："></a>2.缓存雪崩：</h3><p>在设置数据缓存时采用了相同的过期时间，倒是缓存在同一时刻同时失效，请求转发到DB数据库，DB压力过大崩掉。</p>
 <h3 id="3-缓存击穿："><a href="#3-缓存击穿：" class="headerlink" title="3.缓存击穿："></a>3.缓存击穿：</h3><p>缓存在某时间点过期时，恰好这个时间点对这个Key有大量并发请求过来，这些请求发现缓存过期都会从DB加载回缓存，这时候大并发的请求可能会把后端DB压垮。</p>
@@ -870,7 +868,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="QT面试">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="QT面试">
                         
                         <span class="card-title">QT面试</span>
                     </div>
@@ -878,10 +876,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return
+                            总结一下为面试准备的QT的相关内容
                         
                     </div>
                     <div class="publish-info">
@@ -890,8 +885,23 @@
                         </span>
                         <span class="publish-author">
                             
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/面试/" class="post-category" target="_blank">
+                                    面试
+                                </a>
+                            
+                            
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/面试/" target="_blank">
+                        <span class="chip bg-color">面试</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -907,7 +917,7 @@
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="面试">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="面试">
                         
                         <span class="card-title">面试</span>
                     </div>
@@ -1100,7 +1110,7 @@
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">25.5k</span>
+            <span class="white-color">27.5k</span>
             
 
             <br>
