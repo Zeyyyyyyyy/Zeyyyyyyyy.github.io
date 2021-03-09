@@ -4,16 +4,11 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="面试, 小白 | 算法 | 机器学习 | 影评 | 随笔 | 学习经验">
+    <meta name="keywords" content="小白 | 算法 | 机器学习 | 影评 | 随笔 | 学习经验">
     <meta name="baidu-site-verification" content>
     <meta name="google-site-verification" content>
     <meta name="360-site-verification" content>
-    <meta name="description" content="C++：1.static关键字作用
-static作用于局部变量时，改变了局部变量的生存周期，会使该变量存在于定义后直到程序运行结束
-
-static作用于全局变量和函数，改变了全局变量的作用域，使其只能在定义它的文件中使用
-
-static作用">
+    <meta name="description" content="title: 面试top: falsecover: falsetoc: truemathjax: truedate: 2021-03-04 23:57:16password:summary: 面试的知识总结吧（持续更新）tags: 面试ca">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +16,7 @@ static作用">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>面试 | 小郑Blog</title>
+    <title>小郑Blog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -295,13 +290,13 @@ static作用">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        面试
+                        
                     </div>
                 </div>
             </div>
@@ -411,24 +406,11 @@ static作用">
                 <div class="col s7">
                     
                     <div class="article-tag">
-                        
-                        <a href="/tags/面试/" target="_blank">
-                            <span class="chip bg-color">面试</span>
-                        </a>
-                        
+                        <span class="chip bg-color">无标签</span>
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fa fa-bookmark fa-fw icon-category"></i>
-                        
-                        <a href="/categories/面试/" class="post-category" target="_blank">
-                            面试
-                        </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -450,14 +432,14 @@ static作用">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    19.8k
+                    23.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    70 分
+                    84 分
                 </div>
                 
                 
@@ -473,7 +455,8 @@ static作用">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="C-："><a href="#C-：" class="headerlink" title="C++："></a>C++：</h1><h4 id="1-static关键字作用"><a href="#1-static关键字作用" class="headerlink" title="1.static关键字作用"></a>1.static关键字作用</h4><ul>
+                <p>title: 面试<br>top: false<br>cover: false<br>toc: true<br>mathjax: true<br>date: 2021-03-04 23:57:16<br>password:<br>summary: 面试的知识总结吧（持续更新）<br>tags: 面试<br>categories: 面试</p>
+<h1 id="C-："><a href="#C-：" class="headerlink" title="C++："></a>C++：</h1><h4 id="1-static关键字作用"><a href="#1-static关键字作用" class="headerlink" title="1.static关键字作用"></a>1.static关键字作用</h4><ul>
 <li><p>static作用于局部变量时，改变了局部变量的生存周期，会使该变量存在于定义后直到程序运行结束</p>
 </li>
 <li><p>static作用于全局变量和函数，改变了全局变量的作用域，使其只能在定义它的文件中使用</p>
@@ -1249,6 +1232,7 @@ struct mem_control_block {
 <li><p>从 vector 扩容的原理也可以看出：vector 容器释放后，与其相关的指针、引用以及迭代器会失效的原因。</p>
 </li>
 <li><p>Vector的性能影响主要是在插入元素方面：插入元素需要考虑元素的移动问题和是否需要扩容的问题，频繁的调用 push_back() 也是扩容的问题对性能的影响，可更改为emplace_back()</p>
+<p>两者导致差异的原因是插入方法不同，push_back()会先拷贝当前元素，再通过移动或拷贝将其放入，然后销毁原元素，而emplace_back()则是直接在vector中创建</p>
 </li>
 <li><p>list：</p>
 <ul>
@@ -1372,29 +1356,87 @@ struct mem_control_block {
 </ul>
 </li>
 </ul>
-<h4 id="2-进程间通信方式，各自讲一下"><a href="#2-进程间通信方式，各自讲一下" class="headerlink" title="2.进程间通信方式，各自讲一下"></a>2.进程间通信方式，各自讲一下</h4><ul>
-<li><p>管道：无名管道是一种半双工的通信方式,数据只能单向流动,而且只能在具有亲缘关系的进程间使用.进程的亲缘关系一般指的是父子关系。无明管道一般用于两个不同进程之间的通信。当一个进程创建了一个管道,并调用fork创建自己的一个子进程后,父进程关闭读管道端,子进程关闭写管道端,这样提供了两个进程之间数据流动的一种方式。</p>
-<p>有名管道也是一种半双工的通信方式,但是它允许无亲缘关系进程间的通信。</p>
-<p><strong>无名管道：</strong>优点：简单方便；缺点：1）局限于单向通信2）只能创建在它的进程以及其有亲缘关系的进程之间;3）缓冲区有限；</p>
-<p><strong>有名管道：</strong>优点：可以实现任意关系的进程间的通信；缺点：1）长期存于系统中，使用不当容易出错；2）缓冲区有限</p>
+<h4 id="2-进程间通信方式，各自讲一下"><a href="#2-进程间通信方式，各自讲一下" class="headerlink" title="2.进程间通信方式，各自讲一下"></a>2.进程间通信方式，各自讲一下</h4><p><strong>1. 管道/匿名管道(pipe)</strong></p>
+<ul>
+<li><p>管道是半双工的，数据只能向一个方向流动；需要双方通信时，需要建立起两个管道。</p>
 </li>
-<li><p>信号量：信号量是一个计数器,可以用来控制多个线程对共享资源的访问.,它不是用于交换大批数据,而用于多线程之间的同步.它常作为一种锁机制,防止某进程在访问资源时其它进程也访问该资源.因此,主要作为进程间以及同一个进程内不同线程之间的同步手段.</p>
-<p>优点：可以同步进程；缺点：信号量有限</p>
+<li><p>只能用于父子进程或者兄弟进程之间(具有亲缘关系的进程);</p>
 </li>
-<li><p>信号：信号是一种比较复杂的通信方式,用于通知接收进程某个事件已经发生.</p>
+<li><p>单独构成一种独立的文件系统：管道对于管道两端的进程而言，就是一个文件，但它不是普通的文件，它不属于某种文件系统，而是自立门户，单独构成一种文件系统，并且只存在与内存中。</p>
 </li>
-<li><p><strong>消息队列</strong>：消息队列是消息的链表,存放在内核中并由消息队列标识符标识.消息队列克服了信号传递信息少,管道只能承载无格式字节流以及缓冲区大小受限等特点.消息队列是UNIX下不同进程之间可实现共享资源的一种机制,UNIX允许不同进程将格式化的数据流以消息队列形式发送给任意进程.对消息队列具有操作权限的进程都可以使用msget完成对消息队列的操作控制.通过使用消息类型,进程可以按任何顺序读信息,或为消息安排优先级顺序.</p>
-<p>优点：可以实现任意进程间的通信，并通过系统调用函数来实现消息发送和接收之间的同步，无需考虑同步问题，方便；缺点：信息的复制需要额外消耗CPU的时间，不适宜于信息量大或操作频繁的场合</p>
-</li>
-<li><p><strong>共享内存</strong>：共享内存就是映射一段能被其他进程所访问的内存,这段共享内存由一个进程创建,但多个进程都可以访问.共享内存是最快的IPC(进程间通信)方式,它是针对其它进程间通信方式运行效率低而专门设计的.它往往与其他通信机制,如信号量,配合使用,来实现进程间的同步与通信.</p>
-<p><strong>优点</strong>：无须复制，快捷，信息量大；</p>
-<p><strong>缺点</strong>：1）通信是通过将共无法实现享空间缓冲区直接附加到进程的虚拟地址空间中来实现的，因此进程间的读写操作的同步问题；2)利用内存缓冲区直接交换信息，内存的实体存在于计算机中，只能同一个计算机系统中的诸多进程共享，不方便网络通信</p>
-</li>
-<li><p><strong>套接字：可用于不同及其间的进程通信</strong></p>
-<p><strong>优点</strong>：1）传输数据为字节级，传输数据可自定义，数据量小效率高；2）传输数据时间短，性能高；3) 适合于客户端和服务器端之间信息实时交互；4) 可以加密,数据安全性强</p>
-<p><strong>缺点</strong>：1) 需对传输的数据进行解析，转化成应用级的数据。</p>
+<li><p>数据的读出和写入：一个进程向管道中写的内容被管道另一端的进程读出。写入的内容每次都添加在管道缓冲区的末尾，并且每次都是从缓冲区的头部读出数据。</p>
+<p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https:////upload-images.jianshu.io/upload_images/1281379-05378521a7b41af4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/228/format/webp" alt="img"></p>
+<p>​                                        进程间管道通信模型</p>
 </li>
 </ul>
+<p><strong>管道的实质：</strong><br> 管道的实质是一个内核缓冲区，进程以先进先出的方式从缓冲区存取数据，管道一端的进程顺序的将数据写入缓冲区，另一端的进程则顺序的读出数据。<br> 该缓冲区可以看做是一个循环队列，读和写的位置都是自动增长的，不能随意改变，一个数据只能被读一次，读出来以后在缓冲区就不复存在了。<br> 当缓冲区读空或者写满时，有一定的规则控制相应的读进程或者写进程进入等待队列，当空的缓冲区有新数据写入或者满的缓冲区有数据读出来时，就唤醒等待队列中的进程继续读写。</p>
+<p><strong>管道的局限：</strong><br> 管道的主要局限性正体现在它的特点上：</p>
+<ul>
+<li>只支持单向数据流；</li>
+<li>只能用于具有亲缘关系的进程之间；</li>
+<li>没有名字；</li>
+<li>管道的缓冲区是有限的（管道制存在于内存中，在管道创建时，为缓冲区分配一个页面大小）；</li>
+<li>管道所传送的是无格式字节流，这就要求管道的读出方和写入方必须事先约定好数据的格式，比如多少字节算作一个消息（或命令、或记录）等等；</li>
+</ul>
+<p>2.<strong>匿名管道</strong></p>
+<p>由于没有名字，只能用于亲缘关系的进程间通信。为了克服这个缺点，提出了有名管道(FIFO)。<br> 有名管道不同于匿名管道之处在于它提供了一个路径名与之关联，<strong>以有名管道的文件形式存在于文件系统中</strong>，这样，<strong>即使与有名管道的创建进程不存在亲缘关系的进程，只要可以访问该路径，就能够彼此通过有名管道相互通信</strong>，因此，通过有名管道不相关的进程也能交换数据。值的注意的是，有名管道严格遵循<strong>先进先出(first in first out)</strong>,对匿名管道及有名管道的读总是从开始处返回数据，对它们的写则把数据添加到末尾。它们不支持诸如lseek()等文件定位操作。<strong>有名管道的名字存在于文件系统中，内容存放在内存中。</strong></p>
+<blockquote>
+<p><strong>匿名管道和有名管道总结：</strong><br> （1）管道是特殊类型的文件，在满足先入先出的原则条件下可以进行读写，但不能进行定位读写。<br> （2）匿名管道是单向的，只能在有亲缘关系的进程间通信；有名管道以磁盘文件的方式存在，可以实现本机任意两个进程通信。<br> （3）<strong>无名管道阻塞问题：</strong>无名管道无需显示打开，创建时直接返回文件描述符，在读写时需要确定对方的存在，否则将退出。如果当前进程向无名管道的一端写数据，必须确定另一端有某一进程。如果写入无名管道的数据超过其最大值，写操作将阻塞，如果管道中没有数据，读操作将阻塞，如果管道发现另一端断开，将自动退出。<br> （4）<strong>有名管道阻塞问题：</strong>有名管道在打开时需要确实对方的存在，否则将阻塞。即以读方式打开某管道，在此之前必须一个进程以写方式打开管道，否则阻塞。此外，可以以读写（O_RDWR）模式打开有名管道，即当前进程读，当前进程写，不会阻塞。</p>
+</blockquote>
+<p>3.<strong>信号</strong></p>
+<p>信号是一种比较复杂的通信方式,用于通知接收进程某个事件已经发生。</p>
+<ul>
+<li>信号是Linux系统中用于进程间互相通信或者操作的一种机制，信号可以在任何时候发给某一进程，而无需知道该进程的状态。</li>
+<li>如果该进程当前并未处于执行状态，则该信号就有内核保存起来，知道该进程回复执行并传递给它为止。</li>
+<li>如果一个信号被进程设置为阻塞，则该信号的传递被延迟，直到其阻塞被取消是才被传递给进程。</li>
+</ul>
+<blockquote>
+<p><strong>Linux系统中常用信号：</strong><br> （1）<strong>SIGHUP：</strong>用户从终端注销，所有已启动进程都将收到该进程。系统缺省状态下对该信号的处理是终止进程。<br> （2）<strong>SIGINT：</strong>程序终止信号。程序运行过程中，按<code>Ctrl+C</code>键将产生该信号。<br> （3）<strong>SIGQUIT：</strong>程序退出信号。程序运行过程中，按<code>Ctrl+\\</code>键将产生该信号。<br> （4）<strong>SIGBUS和SIGSEGV：</strong>进程访问非法地址。<br> （5）<strong>SIGFPE：</strong>运算中出现致命错误，如除零操作、数据溢出等。<br> （6）<strong>SIGKILL：</strong>用户终止进程执行信号。shell下执行<code>kill -9</code>发送该信号。<br> （7）<strong>SIGTERM：</strong>结束进程信号。shell下执行<code>kill 进程pid</code>发送该信号。<br> （8）<strong>SIGALRM：</strong>定时器信号。<br> （9）<strong>SIGCLD：</strong>子进程退出信号。如果其父进程没有忽略该信号也没有处理该信号，则子进程退出后将形成僵尸进程。</p>
+</blockquote>
+<p><strong>信号来源</strong><br> 信号是软件层次上对中断机制的一种模拟，是一种异步通信方式，，信号可以在用户空间进程和内核之间直接交互，内核可以利用信号来通知用户空间的进程发生了哪些系统事件，信号事件主要有两个来源：</p>
+<ul>
+<li>硬件来源：用户按键输入<code>Ctrl+C</code>退出、硬件异常如无效的存储访问等。</li>
+<li>软件终止：终止进程信号、其他进程调用kill函数、软件异常产生信号。</li>
+</ul>
+<p><strong>信号生命周期和处理流程</strong><br> （1）信号被某个进程产生，并设置此信号传递的对象（一般为对应进程的pid），然后传递给操作系统；<br> （2）操作系统根据接收进程的设置（是否阻塞）而选择性的发送给接收者，如果接收者阻塞该信号（且该信号是可以阻塞的），操作系统将暂时保留该信号，而不传递，直到该进程解除了对此信号的阻塞（如果对应进程已经退出，则丢弃此信号），如果对应进程没有阻塞，操作系统将传递此信号。<br> （3）目的进程接收到此信号后，将根据当前进程对此信号设置的预处理方式，暂时终止当前代码的执行，保护上下文（主要包括临时寄存器数据，当前程序位置以及当前CPU的状态）、转而执行中断服务程序，执行完成后在回复到中断的位置。当然，对于抢占式内核，在中断返回时还将引发新的调度。</p>
+<p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https:////upload-images.jianshu.io/upload_images/1281379-3eed8cca67aa9f55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/889/format/webp" alt="img"></p>
+<p>​                                                    信号的生命周期</p>
+<p><strong>4. 消息(Message)队列</strong></p>
+<ul>
+<li>消息队列是存放在内核中的消息链表，每个消息队列由消息队列标识符表示。</li>
+<li>与管道（无名管道：只存在于内存中的文件；命名管道：存在于实际的磁盘介质或者文件系统）不同的是消息队列存放在内核中，只有在内核重启(即，操作系统重启)或者显示地删除一个消息队列时，该消息队列才会被真正的删除。</li>
+<li>另外与管道不同的是，消息队列在某个进程往一个队列写入消息之前，并不需要另外某个进程在该队列上等待消息的到达。</li>
+</ul>
+<blockquote>
+<p><strong>消息队列特点总结：</strong><br> （1）消息队列是消息的链表,具有特定的格式,存放在内存中并由消息队列标识符标识.<br> （2）消息队列允许一个或多个进程向它写入与读取消息.<br> （3）管道和消息队列的通信数据都是先进先出的原则。<br> （4）消息队列可以实现消息的随机查询,消息不一定要以先进先出的次序读取,也可以按消息的类型读取.比FIFO更有优势。<br> （5）消息队列克服了信号承载信息量少，管道只能承载无格式字 节流以及缓冲区大小受限等缺。<br> （6）目前主要有两种类型的消息队列：POSIX消息队列以及System V消息队列，系统V消息队列目前被大量使用。系统V消息队列是随内核持续的，只有在内核重起或者人工删除时，该消息队列才会被删除。</p>
+</blockquote>
+<p><strong>5. 共享内存(share memory)</strong></p>
+<ul>
+<li>使得多个进程可以可以直接读写同一块内存空间，是最快的可用IPC形式。是针对其他通信机制运行效率较低而设计的。</li>
+<li>为了在多个进程间交换信息，内核专门留出了一块内存区，可以由需要访问的进程将其映射到自己的私有地址空间。进程就可以直接读写这一块内存而不需要进行数据的拷贝，从而大大提高效率。</li>
+<li>由于多个进程共享一段内存，因此需要依靠某种同步机制（如信号量）来达到进程间的同步及互斥。</li>
+</ul>
+<p><strong>6. 信号量(semaphore)</strong><br> 信号量是一个计数器，用于多进程对共享数据的访问，信号量的意图在于进程间同步。<br> 为了获得共享资源，进程需要执行下列操作：<br> （1）<strong>创建一个信号量</strong>：这要求调用者指定初始值，对于二值信号量来说，它通常是1，也可是0。<br> （2）<strong>等待一个信号量</strong>：该操作会测试这个信号量的值，如果小于0，就阻塞。也称为P操作。<br> （3）<strong>挂出一个信号量</strong>：该操作将信号量的值加1，也称为V操作。</p>
+<p>为了正确地实现信号量，信号量值的测试及减1操作应当是原子操作。为此，信号量通常是在内核中实现的。Linux环境中，有三种类型：<strong>Posix（<a href="https://link.jianshu.com?t=http://baike.baidu.com/link?url=hYEo6ngm9MlqsQHT3h28baIDxEooeSPX6wr_FdGF-F8mf7wDp2xJWIDtQWGEDxthtPNiJtlsw460g1_N0txJYa" target="_blank" rel="noopener">可移植性操作系统接口</a>）有名信号量（使用Posix IPC名字标识）</strong>、<strong>Posix基于内存的信号量（存放在共享内存区中）</strong>、<strong>System V信号量（在内核中维护）</strong>。这三种信号量都可用于进程间或线程间的同步。</p>
+<blockquote>
+<p><strong>信号量与普通整型变量的区别：</strong><br> （1）信号量是非负整型变量，除了初始化之外，它只能通过两个标准原子操作：wait(semap) , signal(semap) ; 来进行访问；<br> （2）操作也被成为PV原语（P来源于荷兰语proberen”测试”，V来源于荷兰语verhogen”增加”，P表示通过的意思，V表示释放的意思），而普通整型变量则可以在任何语句块中被访问；</p>
+</blockquote>
+<blockquote>
+<p><strong>信号量与互斥量之间的区别：</strong><br> （1）互斥量用于线程的互斥，信号量用于线程的同步。这是互斥量和信号量的根本区别，也就是互斥和同步之间的区别。<br> <strong>互斥：</strong>是指某一资源同时只允许一个访问者对其进行访问，具有唯一性和排它性。但互斥无法限制访问者对资源的访问顺序，即访问是无序的。<br> <strong>同步：</strong>是指在互斥的基础上（大多数情况），通过其它机制实现访问者对资源的有序访问。<br> 在大多数情况下，同步已经实现了互斥，特别是所有写入资源的情况必定是互斥的。少数情况是指可以允许多个访问者同时访问资源<br> （2）互斥量值只能为0/1，信号量值可以为非负整数。<br> 也就是说，一个互斥量只能用于一个资源的互斥访问，它不能实现多个资源的多线程互斥问题。信号量可以实现多个同类资源的多线程互斥和同步。当信号量为单值信号量是，也可以完成一个资源的互斥访问。<br> （3）互斥量的加锁和解锁必须由同一线程分别对应使用，信号量可以由一个线程释放，另一个线程得到。</p>
+</blockquote>
+<p><strong>7. 套接字(socket)</strong><br> 套接字是一种通信机制，凭借这种机制，客户/服务器（即要进行通信的进程）系统的开发工作既可以在本地单机上进行，也可以跨网络进行。也就是说它可以让不在同一台计算机但通过网络连接计算机上的进程进行通信。</p>
+<p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https:////upload-images.jianshu.io/upload_images/1281379-2db1deb0115ec4f2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/319/format/webp" alt="img"></p>
+<p>​                                Socket是应用层和传输层之间的桥梁</p>
+<p>套接字是支持TCP/IP的网络通信的基本操作单元，可以看做是不同主机之间的进程进行双向通信的端点，简单的说就是通信的两方的一种约定，用套接字中的相关函数来完成通信过程。</p>
+<p><strong>套接字特性</strong><br> 套接字的特性由3个属性确定，它们分别是：域、端口号、协议类型。<br> <strong>（1）套接字的域</strong><br> 它指定套接字通信中使用的网络介质，最常见的套接字域有两种：<br> <strong>一是AF_INET，它指的是Internet网络。</strong>当客户使用套接字进行跨网络的连接时，它就需要用到服务器计算机的IP地址和端口来指定一台联网机器上的某个特定服务，所以在使用socket作为通信的终点，服务器应用程序必须在开始通信之前绑定一个端口，服务器在指定的端口等待客户的连接。<br> <strong>另一个域AF_UNIX，表示UNIX文件系统，</strong>它就是文件输入/输出，而它的地址就是文件名。<br> <strong>（2）套接字的端口号</strong><br> 每一个基于TCP/IP网络通讯的程序(进程)都被赋予了唯一的端口和端口号，端口是一个信息缓冲区，用于保留Socket中的输入/输出信息，端口号是一个16位无符号整数，范围是0-65535，以区别主机上的每一个程序（端口号就像房屋中的房间号），低于256的端口号保留给标准应用程序，比如pop3的端口号就是110，每一个套接字都组合进了IP地址、端口，这样形成的整体就可以区别每一个套接字。<br> <strong>（3）套接字协议类型</strong><br> 因特网提供三种通信机制，<br> <strong>一是流套接字，</strong>流套接字在域中通过TCP/IP连接实现，同时也是AF_UNIX中常用的套接字类型。流套接字提供的是一个有序、可靠、双向字节流的连接，因此发送的数据可以确保不会丢失、重复或乱序到达，而且它还有一定的出错后重新发送的机制。<br> <strong>二个是数据报套接字，</strong>它不需要建立连接和维持一个连接，它们在域中通常是通过UDP/IP协议实现的。它对可以发送的数据的长度有限制，数据报作为一个单独的网络消息被传输,它可能会丢失、复制或错乱到达，UDP不是一个可靠的协议，但是它的速度比较高，因为它并一需要总是要建立和维持一个连接。<br> <strong>三是原始套接字，</strong>原始套接字允许对较低层次的协议直接访问，比如IP、 ICMP协议，它常用于检验新的协议实现，或者访问现有服务中配置的新设备，因为RAW SOCKET可以自如地控制Windows下的多种协议，能够对网络底层的传输机制进行控制，所以可以应用原始套接字来操纵网络层和传输层应用。比如，我们可以通过RAW SOCKET来接收发向本机的ICMP、IGMP协议包，或者接收TCP/IP栈不能够处理的IP包，也可以用来发送一些自定包头或自定协议的IP包。网络监听技术很大程度上依赖于SOCKET_RAW。</p>
+<blockquote>
+<p><strong>原始套接字与标准套接字的区别在于：</strong><br> 原始套接字可以读写内核没有处理的IP数据包，而流套接字只能读取TCP协议的数据，数据报套接字只能读取UDP协议的数据。因此，如果要访问其他协议发送数据必须使用原始套接字。</p>
+</blockquote>
+<p><strong>套接字通信的建立</strong></p>
+<p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https:////upload-images.jianshu.io/upload_images/1281379-2575b81bbab6b67b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/437/format/webp" alt="img"></p>
+<p>Socket通信基本流程</p>
+<p><em><em> 服务器端</em></em><br> （1）首先服务器应用程序用系统调用socket来创建一个套接字，它是系统分配给该服务器进程的类似文件描述符的资源，它不能与其他的进程共享。<br> （2）然后，服务器进程会给套接字起个名字，我们使用系统调用bind来给套接字命名。然后服务器进程就开始等待客户连接到这个套接字。<br> （3）接下来，系统调用listen来创建一个队列并将其用于存放来自客户的进入连接。<br> （4）最后，服务器通过系统调用accept来接受客户的连接。它会创建一个与原有的命名套接不同的新套接字，这个套接字只用于与这个特定客户端进行通信，而命名套接字（即原先的套接字）则被保留下来继续处理来自其他客户的连接（建立客户端和服务端的用于通信的流，进行通信）。</p>
+<p><strong>客户端</strong><br> （1）客户应用程序首先调用socket来创建一个未命名的套接字，然后将服务器的命名套接字作为一个地址来调用connect与服务器建立连接。<br> （2）一旦连接建立，我们就可以像使用底层的文件描述符那样用套接字来实现双向数据的通信（通过流进行数据传输）</p>
 <h4 id="3-线程的通信方式"><a href="#3-线程的通信方式" class="headerlink" title="3.线程的通信方式"></a>3.线程的通信方式</h4><ul>
 <li><p>锁机制：包括互斥锁、条件变量、读写锁</p>
 <ul>
@@ -1422,7 +1464,7 @@ struct mem_control_block {
 </li>
 <li><p>算法：</p>
 <ul>
-<li><p>OPT（最优置换）</p>
+<li><p>OPT（最优置换）　置换以后不再被访问，或者在将来最迟才回被访问的页面，缺页中断率最低。但是该算法需要依据以后各业的使用情况，而当一个进程还未运行完成是，很难估计哪一个页面是以后不再使用或在最长时间以后才会用到的页面。所以<strong>该算法是不能实现的</strong></p>
 </li>
 <li><p>FIFO（先进先出）但会出现Belady异常，即分配物理块数增大而页故障不减反增。</p>
 </li>
@@ -1735,14 +1777,28 @@ int main(){
 </blockquote>
 </li>
 </ul>
-<h4 id="21-线程池"><a href="#21-线程池" class="headerlink" title="21.线程池"></a>21.线程池</h4><p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://upload-images.jianshu.io/upload_images/2615789-2d3eb90c8e2cf51f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="img"></p>
-<p>从图可以看出，线程池执行所提交的任务过程主要有这样几个阶段：</p>
-<ol>
-<li>先判断线程池中<strong>核心线程池</strong>所有的线程是否都在执行任务。如果不是，则新创建一个线程执行刚提交的任务，否则，核心线程池中所有的线程都在执行任务，则进入第2步；</li>
-<li>判断当前<strong>阻塞队列</strong>是否已满，如果未满，则将提交的任务放置在阻塞队列中；否则，则进入第3步；</li>
-<li>判断<strong>线程池中所有的线程</strong>是否都在执行任务，如果没有，则创建一个新的线程来执行任务，否则，则交给饱和策略进行处理</li>
-</ol>
-<h4 id="22-中断"><a href="#22-中断" class="headerlink" title="22.中断"></a>22.中断</h4><ul>
+<h4 id="21-线程池"><a href="#21-线程池" class="headerlink" title="21.线程池"></a>21.线程池</h4><h5 id="线程池基本概念"><a href="#线程池基本概念" class="headerlink" title="线程池基本概念"></a>线程池基本概念</h5><p>线程池是一种线程使用模式，其思想非常类似于内存池，均是从性能出发而开发出来的一种优化技巧。线程池主要用在需要频繁执行较短的任务的情况下，由于短时间内如果进行大量线程的创建与销毁带来的开销是不可接受，因此通常预先创建好一些工作线程，然后在需要使用时直接将任务分派给空闲线程即可，同时可以根据任务数量动态增加减少内存池中的线程数量，在尽量将少资源占用的情况下获得较好的性能。</p>
+<h5 id="线程池特点"><a href="#线程池特点" class="headerlink" title="线程池特点"></a>线程池特点</h5><ul>
+<li>线程池数量限制</li>
+</ul>
+<p>由于线程自身会占用系统资源，带来系统开销，因此个数并不是越多越好，但是如果太少将会降低并发性能，使得任务长期得不到服务，因此线程池数量需要有一个合理值。</p>
+<ul>
+<li>适用于大量较短暂任务</li>
+</ul>
+<p>一般而言，线程数量会小于并发任务量，因此如果任务时间很长，甚至和进程生命周期处在同一个数量级上，此时直接使用普通线程即可，无需使用线程池。</p>
+<ul>
+<li>线程数量选取</li>
+</ul>
+<p>一般而言，对于IO密集型线程，线程数量一般大于CPU数量，而计算密集型线程数量则取和CPU相同比较合理。</p>
+<ul>
+<li>根据任务情况动态增减线程池中线程数量</li>
+</ul>
+<p>初始线程池数量一般不直接创建到最大数量，因此在运行中需要根据任务情况动态进行线程的创建和销毁。</p>
+<h5 id="线程池基本结构"><a href="#线程池基本结构" class="headerlink" title="线程池基本结构"></a>线程池基本结构</h5><p>线程池的目的以及特点，可总结出线程池以及任务需要实现以下功能：</p>
+<pre><code>1. 线程池初始化：用于创建一定数量的线程
+2. 线程池增加线程数量：用于任务过多时增加线程数量
+3. 线程池销毁：销毁线程池
+4. 往线程池中增加任务</code></pre><h4 id="22-中断"><a href="#22-中断" class="headerlink" title="22.中断"></a>22.中断</h4><ul>
 <li><p>按中断源进行分类：发出中断请求的设备称为中断源。按中断源的不同，中断可分为</p>
 <p>内中断：即程序运行错误引起的中断</p>
 <p>外中断：即由外部设备、接口卡引起的中断</p>
@@ -1846,6 +1902,7 @@ int main(){
 </tr>
 </tbody></table>
 <p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="Z:%5Cblog%5Csource_posts%5C%E9%9D%A2%E8%AF%95%5C2018041112053246.png" alt="2018041112053246"></p>
+<p>其中IEE 802只是针对不同的网络结构有不同以太帧格式</p>
 <h4 id="3-HTTP和HTTPS的区别，具体内容HTTP2-0，HTTP2-0的多路复用，HTTP1-1-Pipeline起了什么作用"><a href="#3-HTTP和HTTPS的区别，具体内容HTTP2-0，HTTP2-0的多路复用，HTTP1-1-Pipeline起了什么作用" class="headerlink" title="3.HTTP和HTTPS的区别，具体内容HTTP2.0，HTTP2.0的多路复用，HTTP1.1 Pipeline起了什么作用"></a>3.HTTP和HTTPS的区别，具体内容HTTP2.0，HTTP2.0的多路复用，HTTP1.1 Pipeline起了什么作用</h4><ul>
 <li><p>HTTPS 协议提供了三个关键的指标</p>
 <ul>
@@ -2025,10 +2082,42 @@ int main(){
 <p>这就像OSI七层模型，TCP/IP五层模型其实也不是必要的，用双层模型甚至单层模型实现网络也不是不可以的，只是那样做很蛋疼罢了。</p>
 <p><strong>三. 早期的『以太网』实现</strong></p>
 <p>早期的以太网只有集线器（hub），没有交换机（switch），所以发出去的包能被以太网内的所有机器监听到，因此要附带上MAC地址，每个机器只需要接受与自己MAC地址相匹配的包。</p>
+<p><strong>四.IP协议头部结构</strong></p>
+<p>IPv4 数据报头部至少为 20 字节，结构如下。</p>
+<p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://zinglix.xyz/img/in-post/IP/1.png" alt="img"></p>
+<ul>
+<li>版本：确定 IP 协议的版本（IPv4 或 IPv6），从而能正确解释后面的内容。</li>
+<li>IHL（头部长度）：由于选项的存在，由此字段确定数据从何处开始。</li>
+<li>DS（区分服务，DiffServ）：3位优先权字段(现已被忽略) + 4位TOS字段 + 1位保留字段(须为0)。4位TOS字段分别表示最小延时、最大吞吐量、最高可靠性、最小费用，其中最多有一个能置为1。应用程序根据实际需要来设置 TOS值，如ssh和telnet这样的登录程序需要的是最小延时的服务，文件传输ftp需要的是最大吞吐量的服务</li>
+<li>ECN：拥塞标识符。当路由器感知到拥塞时会设置这两位以降低发送速度。</li>
+<li>总长度：IP 数据报的总长度，包括首部和头部，字节为单位。由于位数限制最多 65535 字节，所以数据大小最多为 65515 字节，但是链路层一般不能携带这么大的数据，很少超过 1500 字节。</li>
+<li>标识：唯一地标识主机发送的每一个数据报，其初始值是随机的，每发送一个数据报其值就加1。同一个数据报的所有分片都具有相同的标识值</li>
+<li>标志: 位1保留，位2表禁止分片(DF)，若设置了此位，IP模块将不对数据报进行分片，在此情况下若IP数据报超过MTU，IP模块将丢弃数据报并返回一个ICMP差错报文；位3标识更多分片(MF)，除了数据报的最后一个分片，其他分片都要把它设置为1</li>
+<li>位偏移：分片相对原始IP数据报数据部分的偏移。实际的偏移值为该值左移3位后得到的，所以除了最后一个IP数据报分片外，每个IP分片的数据部分的长度都必须是8的整数倍</li>
+<li>生存期（Time-To-Live，TTL）：标识可通过的路由器数量上限。每经过一个路由器将该值减一，为 0 时丢弃，避免在一个网络环路中无限传输。</li>
+<li>协议：指示了上层是什么协议，6 为 TCP，17 为 UDP。</li>
+<li>头部校验和：用 16 位反码和（Internet 校验和）计算头部，对于数据部分校验由上层协议实现。由于 TTL 每经过一次路由器都会改变，校验和也要因此重新计算。</li>
+</ul>
 <h4 id="6-子网掩码的作用"><a href="#6-子网掩码的作用" class="headerlink" title="6.子网掩码的作用"></a>6.子网掩码的作用</h4><p>在设置电脑IP时，会碰到两个重要的参数，一个是IP地址，一个是子网掩码。IP地址是互联网上每个子网或每个主机在网络上的唯一身份标签，那子网掩码是干什么用的呢？</p>
 <p>随着互联网的发展，越来越多的网络产生，有的网络多则几百台主机，少则区区几台，这样就浪费了大量的IP地址，所以要划分子网。为了有序地区分和管理不同的子网，就需要使用子网掩码。</p>
 <p>子网掩码是一种用来指明一个IP地址所标示的主机处于哪个子网中。子网掩码不能单独存在，它必须结合IP地址一起使用。子网掩码只有一个作用，就是将某个IP地址划分成<a href="https://baike.baidu.com/item/网络地址" target="_blank" rel="noopener">网络地址</a>和<a href="https://baike.baidu.com/item/主机地址" target="_blank" rel="noopener">主机地址</a>两部分。</p>
-<h4 id="7-为什么要三次握手和四次挥手"><a href="#7-为什么要三次握手和四次挥手" class="headerlink" title="7.为什么要三次握手和四次挥手"></a>7.为什么要三次握手和四次挥手</h4><p><code>TCP</code>的三次握手建立连接和四次挥手断开连接，相信很多人都听说过，也都看过相关的内容，本篇是为了记录自己对与这两种操作的理解。</p>
+<h4 id="7-为什么要三次握手和四次挥手"><a href="#7-为什么要三次握手和四次挥手" class="headerlink" title="7.为什么要三次握手和四次挥手"></a>7.为什么要三次握手和四次挥手</h4><p>先补充一下TCP协议的头部结构</p>
+<p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://img-blog.csdn.net/20170324223007286?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveXRodW5kZXI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="img"></p>
+<ul>
+<li>4位版本号：IP协议（IPv4）版本号位4</li>
+<li>4位头部长度：标识头部有多少个4字节，即最大共15*4个字节</li>
+<li>8位服务类型：包含一个4位优先权字段：最小延时，最大吞吐量，最高可靠性和最小费用。</li>
+<li>16位总长度：表示整个IP数据报的长度，最大表示65535，但由于MTU限制，一般无法到达这个值。</li>
+<li>16位标识：唯一的标识数据报。系统采用加1的式边发送边赋值。</li>
+<li>3位标识（保留，DF禁止分片，MF更多分片）：所以这个标志是为分片存在，DF设置时禁止分片所以如果数据报太大则发送失败。MF设置时，如果产生分片，除了最后一个分片，其他此片置1。</li>
+<li>13位分片偏移：分片相对原始IP数据报开始处的偏移。</li>
+<li>8位生存时间（TTL）：数据报到达目的地之前允许经过的路由跳跳数。跳一下减1，得0丢弃。</li>
+<li>8位协议：用来区分上层协议（ICMP为1，TCP为6，UDP为17）。</li>
+<li>16位头部校验和：仅以CRC算法检验数据报头部在传输过程中是否损坏。</li>
+<li>32位源端口IP地址和目的端口地址很明白。</li>
+<li>选项（可变长）：记录路由，告诉途径得所有路由把IP填进来。 时间戳，告诉每个路由器都将数据报被转发的时间传进来。松散路由选择，指定一个路由器IP地址列表，必须按这个表发送，严格路由选择，数据报经过路由表。</li>
+</ul>
+<p><code>TCP</code>的三次握手建立连接和四次挥手断开连接，相信很多人都听说过，也都看过相关的内容，本篇是为了记录自己对与这两种操作的理解。</p>
 <p>在进入正式内容之前，先来看几个符号的概念：</p>
 <ul>
 <li><strong>序列号<code>seq</code>：</strong> 用来标记数据段的顺序，<code>TCP</code>把连接中发送的所有数据字节都编上一个序号，第一个字节的编号由本地随机产生；给字节编上序号后，就给每一个报文段指派一个序号；序列号<code>seq</code>就是这个报文段中的第一个字节的数据编号。</li>
@@ -2169,14 +2258,23 @@ U+10000 ~ U+1FFFF: 11110XXX 10XXXXXX 10XXXXXX 10XXXXXX<span aria-hidden="true" c
 <h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h4 id="1-数据库索引"><a href="#1-数据库索引" class="headerlink" title="1.数据库索引"></a>1.数据库索引</h4><p>在关系数据库中，如果有上万甚至上亿条记录，在查找记录的时候，想要获得非常快的速度，就需要使用索引。</p>
 <p>索引是关系数据库中对某一列或多个列的值进行预排序的数据结构。通过使用索引，可以让数据库系统不必扫描整个表，而是直接定位到符合条件的记录，这样就大大加快了查询速度。</p>
 <h4 id="2-数据库事务"><a href="#2-数据库事务" class="headerlink" title="2.数据库事务"></a>2.数据库事务</h4><p>事务（Transaction）是并发控制的基本单位。所谓的事务，它是一个操作序列，这些操作要么都执行，要么都不执行，它是一个不可分割的工作单位。例如，银行转账工作：从一个账号扣款并使另一个账号增款，这两个操作要么都执行，要么都不执行。所以，应该把它们看成一个事务。事务是数据库维护数据一致性的单位，在每个事务结束时，都能保 持数据一致性。</p>
+<h4 id="3-数据库的三大范式"><a href="#3-数据库的三大范式" class="headerlink" title="3.数据库的三大范式"></a>3.数据库的三大范式</h4><p>第一范式：属性具有原子性，不可再分解，例如：日期这个属性，如果认为日期可以分解成年月日，含有该属性的表就不是第一范式<br>第二范式：在第一范式的基础上，非主属性完全依赖于候选键（若干主属性组成），不存在部分依赖<br>第三范式：在满足第二范式的基础上，消除传递依赖，就是说每个非主属性都不传递依赖于候选码。例如：（学生，课程，老师，老师职称），（学生，课程）-&gt;老师-&gt;老师职称，老师和老师职称这里存在传递依赖。<br>BC范式：在满足第三范式的基础上主属性不依赖于主属性</p>
 <h4 id="4-数据库ACID特性"><a href="#4-数据库ACID特性" class="headerlink" title="4.数据库ACID特性"></a>4.数据库ACID特性</h4><p>事务：要做的事情，对数据库进行读写操作。事务是并发控制的基本单位，一个程序包含多个事务<br>A(Atomicity)C(Consistency)I(Isolation)D(Durability)==&gt;原子性，一致性，隔离性，持久性</p>
 <p>原子性：事务作为一个整体被执行，对数据的操作要么全都执行要么全不执行<br>一致性：事务应确保从一个一致状态转变到另一个一致状态，一致状态的含义是数据库中的数据应满足完整性约束<br>隔离性：多个事务并发执行时，一个事务的执行不影响其他事务的执行<br>持久性：一个事务一旦提交，他对数据库的修改应该永久保存在数据库中<br>举例：<br>A向B转钱，分为六个过程：<br>1.读取A账户的钱；<br>2.A账户的钱递减；<br>3.写回A账户；<br>4.读取B账户的钱；<br>5.B账户的钱递增；<br>6.写回B账户。</p>
 <p>原子性：以上转钱的中间过程要么全做，要么全部不做，中间如果某个步骤出错，则回滚（单库事务回滚使用ROLLBACK）到初始的状态，通过undo log来实现（在操作任何数据之前，首先将数据备份到undo log中，进行数据修改，如果出现了错误，执行了ROLLBACK语句，系统可以利用undo log中的备份将数据恢复到事务开始之前的状态）<br>一致性：A账户和B账户，转账之前和转账之后钱的总数是不变的，通过undo log来实现然后<br>隔离性：在进行并发操作时，A向B转账，C也向B转账，转账完成之后，B账户的钱是两次转账的总和；在A向B转账的过程中，只要事务还没有提交，两个账户里面的钱不会发生变化<br>持久性：转账成功，两个账号的钱会写入数据库中做持久化保存，通过redo log(重做日志)来实现（redo log记录的是新数据的备份，在事务提交之前只要将redo log持久化即可，不需要将数据持久化，当系统崩溃时，系统可以根据redo log的内容，将数据恢复到最新的状态）<br>原子性和一致性的关联：<br>原子性的破坏可能导致数据库的不一致，数据的不一致并不都和原子性有关。<br>例如：A账户向B账户转100元，但是B账户只增加了50元，此过程符合事务的原子性，但是数据的一致性被破坏了。</p>
-<h4 id="5-Mysql的四种隔离状态"><a href="#5-Mysql的四种隔离状态" class="headerlink" title="5.Mysql的四种隔离状态"></a>5.Mysql的四种隔离状态</h4><p>通过对数据库加锁实现并发控制，锁分为：排它锁（X锁，写锁）和共享锁（S锁，读锁）</p>
+<h4 id="5-Mysql的四种隔离状态"><a href="#5-Mysql的四种隔离状态" class="headerlink" title="5.Mysql的四种隔离状态"></a>5.Mysql的四种隔离状态</h4><p>该隔离级别的事务会读到其它未提交事务的数据，此现象也称之为 <strong>脏读</strong> 。</p>
+<p>一个事务可以读取另一个已提交的事务，多次读取会造成不一样的结果，此现象称为<strong>不可重复读问题</strong></p>
+<p>幻读和不可重复读类似，但不可重复读重点在于update和delete，而幻读的重点在于insert。</p>
+<p>通过对数据库加锁实现并发控制，锁分为：排它锁（X锁，写锁）和共享锁（S锁，读锁）</p>
 <p>隔离级别：四种隔离级别（读未提交、读已提交、可重复读、串行化）</p>
-<p>读未提交：隔离级别最低，会引发脏读、不可重复读和幻读<br>读已提交：读到的都是已提交的数据，会引发不可重复读和幻读<br>可重复读：避免了脏读、不可重复读，会引发幻读<br>串行化：所有事务按照次序依次执行，脏读、不可重复读、幻读都不会出现<br>进行读操作时，需要申请并获得S锁（共享锁，其他事务可以继续加锁，但不能加排它锁）；进行写操作时，需要申请并获得X锁（排它锁，其他事务不能再获得任何锁）<br>《一级封锁协议》（写操作时，加X锁，只有当X锁释放后，才能允许其他事物对该事务操作），可防止丢失修改；<br>《二级封锁协议》（在一级封锁协议的基础上，在读数据时加S锁，读完后释放），可防止不丢失修改，不读脏数据；<br>《三级封锁协议》（在一级封锁协议的基础上，读数据时加S锁，直到事务结束时释放）可防止不丢失修改，不读脏数据，不可重复读。<br>mysql的默认隔离级别是：可重复读。myISAM和InnoDB都支持表级锁，但Innodb默认是行级锁。<br>oracle支持读已提交和串行化两种隔离级别，默认情况是读已提交</p>
+<ul>
+<li>未提交读(Read Uncommitted)：允许脏读，也就是可能读取到其他会话中未提交事务修改的数据</li>
+<li>提交读(Read Committed)：只能读取到已经提交的数据。Oracle等多数数据库默认都是该级别 (不重复读)</li>
+<li>可重复读(Repeated Read)：可重复读。在同一个事务内的查询都是事务开始时刻一致的，InnoDB默认级别。在SQL标准中，该隔离级别消除了不可重复读，但是还存在幻象读</li>
+<li>串行读(Serializable)：完全串行化的读，每次读都需要获得表级共享锁，读写相互都会阻塞</li>
+</ul>
+<p>进行读操作时，需要申请并获得S锁（共享锁，其他事务可以继续加锁，但不能加排它锁）；进行写操作时，需要申请并获得X锁（排它锁，其他事务不能再获得任何锁）<br>《一级封锁协议》（写操作时，加X锁，只有当X锁释放后，才能允许其他事物对该事务操作），可防止丢失修改；<br>《二级封锁协议》（在一级封锁协议的基础上，在读数据时加S锁，读完后释放），可防止不丢失修改，不读脏数据；<br>《三级封锁协议》（在一级封锁协议的基础上，读数据时加S锁，直到事务结束时释放）可防止不丢失修改，不读脏数据，不可重复读。<br>mysql的默认隔离级别是：可重复读。myISAM和InnoDB都支持表级锁，但Innodb默认是行级锁。<br>oracle支持读已提交和串行化两种隔离级别，默认情况是读已提交</p>
 <p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://pic.leetcode-cn.com/1608554158-BLlVPx-file_1608554160034" alt="在这里插入图片描述"></p>
-<h4 id="3-数据库的三大范式"><a href="#3-数据库的三大范式" class="headerlink" title="3.数据库的三大范式"></a>3.数据库的三大范式</h4><p>第一范式：属性具有原子性，不可再分解，例如：日期这个属性，如果认为日期可以分解成年月日，含有该属性的表就不是第一范式<br>第二范式：在第一范式的基础上，非主属性完全依赖于候选键（若干主属性组成），不存在部分依赖<br>第三范式：在满足第二范式的基础上，消除传递依赖，就是说每个非主属性都不传递依赖于候选码。例如：（学生，课程，老师，老师职称），（学生，课程）-&gt;老师-&gt;老师职称，老师和老师职称这里存在传递依赖。<br>BC范式：在满足第三范式的基础上主属性不依赖于主属性</p>
 <h4 id="6-mysql的MVCC机制（实现了可重复读）"><a href="#6-mysql的MVCC机制（实现了可重复读）" class="headerlink" title="6.mysql的MVCC机制（实现了可重复读）"></a>6.mysql的MVCC机制（实现了可重复读）</h4><p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://img-blog.csdnimg.cn/20190515143938256.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nhbnl1ZXNhbjAwMDA=,size_16,color_FFFFFF,t_70" alt="img"></p>
 <h4 id="7-mysql优化方法"><a href="#7-mysql优化方法" class="headerlink" title="7.mysql优化方法"></a>7.mysql优化方法</h4><p><a href="https://zhuanlan.zhihu.com/p/59818056" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/59818056</a></p>
 <h4 id="8-mysql引擎和区别"><a href="#8-mysql引擎和区别" class="headerlink" title="8.mysql引擎和区别"></a>8.mysql引擎和区别</h4><ul>
@@ -2196,6 +2294,17 @@ U+10000 ~ U+1FFFF: 11110XXX 10XXXXXX 10XXXXXX 10XXXXXX<span aria-hidden="true" c
 <h4 id="14-mysql出现的问题-幻读，脏读"><a href="#14-mysql出现的问题-幻读，脏读" class="headerlink" title="14.mysql出现的问题 幻读，脏读"></a>14.mysql出现的问题 幻读，脏读</h4><p><a href="https://juejin.cn/post/6844903665367547918" target="_blank" rel="noopener">https://juejin.cn/post/6844903665367547918</a></p>
 <h4 id="15-mysql的锁"><a href="#15-mysql的锁" class="headerlink" title="15.mysql的锁"></a>15.mysql的锁</h4><p><a href="https://learnku.com/articles/39212?order_by=vote_count&amp;" target="_blank" rel="noopener">https://learnku.com/articles/39212?order_by=vote_count&amp;</a></p>
 <h4 id="16-秒杀系统的设计"><a href="#16-秒杀系统的设计" class="headerlink" title="16.秒杀系统的设计"></a>16.秒杀系统的设计</h4><p><a href="https://gongfukangee.github.io/2019/06/09/SecondsKill/" target="_blank" rel="noopener">https://gongfukangee.github.io/2019/06/09/SecondsKill/</a></p>
+<h4 id="乐观锁和悲观锁"><a href="#乐观锁和悲观锁" class="headerlink" title="乐观锁和悲观锁"></a>乐观锁和悲观锁</h4><h3 id="悲观锁和乐观锁"><a href="#悲观锁和乐观锁" class="headerlink" title="悲观锁和乐观锁"></a>悲观锁和乐观锁</h3><ul>
+<li>悲观锁</li>
+</ul>
+<p>正如其名，它指的是对数据被外界（包括本系统当前的其他事务，以及来自外部系统的事务处理）修改持保守态度，因此，在整个数据处理过程中，将数据处于锁定状态。悲观锁的实现，往往依靠数据库提供的锁机制（也只有数据库层提供的锁机制才能真正保证数据访问的排他性，否则，即使在本系统中实现了加锁机制，也无法保证外部系统不会修改数据）。</p>
+<p>在悲观锁的情况下，为了保证事务的隔离性，就需要一致性锁定读。读取数据时给加锁，其它事务无法修改这些数据。修改删除数据时也要加锁，其它事务无法读取这些数据。</p>
+<ul>
+<li>乐观锁</li>
+</ul>
+<p>相对悲观锁而言，乐观锁机制采取了更加宽松的加锁机制。悲观锁大多数情况下依靠数据库的锁机制实现，以保证操作最大程度的独占性。但随之而来的就是数据库性能的大量开销，特别是对长事务而言，这样的开销往往无法承受。</p>
+<p>而乐观锁机制在一定程度上解决了这个问题。乐观锁，大多是基于数据版本（ Version ）记录机制实现。何谓数据版本？即为数据增加一个版本标识，在基于数据库表的版本解决方案中，一般是通过为数据库表增加一个 “version” 字段来实现。读取出数据时，将此版本号一同读出，之后更新时，对此版本号加一。此时，将提交数据的版本数据与数据库表对应记录的当前版本信息进行比对，如果提交的数据版本号大于数据库表当前版本号，则予以更新，否则认为是过期数据。</p>
+<p>要说明的是，MVCC的实现没有固定的规范，每个数据库都会有不同的实现方式，这里讨论的是InnoDB的MVCC。</p>
 <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><h3 id="1-哈夫曼编码"><a href="#1-哈夫曼编码" class="headerlink" title="1.哈夫曼编码"></a>1.哈夫曼编码</h3><p><a href="https://zhuanlan.zhihu.com/p/75048255" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/75048255</a></p>
 <h3 id="2-map为什么要用红黑树"><a href="#2-map为什么要用红黑树" class="headerlink" title="2.map为什么要用红黑树"></a>2.map为什么要用红黑树</h3><p><a href="https://www.zhihu.com/question/20545708" target="_blank" rel="noopener">https://www.zhihu.com/question/20545708</a></p>
 <h3 id="3-B-树"><a href="#3-B-树" class="headerlink" title="3.B+树"></a>3.B+树</h3><h5 id="BST（二叉查找树）"><a href="#BST（二叉查找树）" class="headerlink" title="BST（二叉查找树）"></a>BST（二叉查找树）</h5><p>二叉查找树又称二叉搜索树，二叉排序树，特点如下:</p>
@@ -2246,7 +2355,7 @@ U+10000 ~ U+1FFFF: 11110XXX 10XXXXXX 10XXXXXX 10XXXXXX<span aria-hidden="true" c
 <h4 id="B树："><a href="#B树：" class="headerlink" title="B树："></a>B树：</h4><p>B 树就是常说的“B 减树（B- 树）”，又名平衡多路（即不止两个子树）查找树，它和平衡二叉树的不同有这么几点：</p>
 <ol>
 <li>平衡二叉树节点最多有两个子树，而 B 树每个节点可以有多个子树，<strong>M 阶 B 树表示该树每个节点最多有 M 个子树</strong></li>
-<li>平衡二叉树每个节点只有一个数据和两个指向孩子的指针，而 B 树每个<strong>中间节点</strong>有 k-1 个关键字（可以理解为数据）和 k 个子树（ **k 介于阶数 M 和 M/2 之间，M/2 向上取整）</li>
+<li>平衡二叉树每个节点只有一个数据和两个指向孩子的指针，而 B 树每个<strong>中间节点</strong>有 k-1 个关键字（可以理解为数据）和 k 个子树（ k 介于阶数 M 和 M/2 之间，M/2 向上取整）</li>
 <li>B 树的所有叶子节点都在同一层，并且叶子节点只有关键字，指向孩子的指针为 null</li>
 </ol>
 <p>和平衡二叉树相同的点在于：B 树的节点数据大小也是按照左小右大，子树与节点的大小比较决定了子树指针所处位置。</p>
@@ -3068,7 +3177,7 @@ void test1() {
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《面试》
+                    《》
                 </span> 由
             <a xmlns:cc="http://creativecommons.org/ns#" href="/2021/03/04/mian-shi/" property="cc:attributionName"
                rel="cc:attributionURL">
@@ -3380,7 +3489,7 @@ void test1() {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="布隆过滤器">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="布隆过滤器">
                         
                         <span class="card-title">布隆过滤器</span>
                     </div>
@@ -3429,7 +3538,7 @@ void test1() {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="EngLish Learn">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="EngLish Learn">
                         
                         <span class="card-title">EngLish Learn</span>
                     </div>
@@ -3608,13 +3717,6 @@ void test1() {
 </main>
 
 
-<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
-    });
-</script>
-
     <footer class="page-footer bg-color">
     <div class="container row center-align">
         <div class="col s12 m8 l8 copy-right">
@@ -3622,7 +3724,7 @@ void test1() {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">27.7k</span>
+            <span class="white-color">31.7k</span>
             
 
             <br>
