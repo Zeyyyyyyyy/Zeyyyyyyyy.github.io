@@ -450,14 +450,14 @@ static作用">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    24.2k
+                    62.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    85 分
+                    224 分
                 </div>
                 
                 
@@ -501,7 +501,7 @@ public :
     static base _object1;//正确，静态数据成员 
     base _object2;//错误 
     base *pObject;//正确，指针 
-    base &mObject;//正确，引用 
+    base &amp;mObject;//正确，引用 
 };<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
@@ -554,7 +554,7 @@ public :
 <pre class="line-numbers language-C++"><code class="language-C++">#include <iostream>
 #include <memory>
 
-template <typename T>
+template <typename t="">
 class SmartPtr
 {
 private : T *_ptr;
@@ -575,62 +575,62 @@ public:
 
     ~SmartPtr()
     {
-        (*this->_count)--;
-        if (*this->_count == 0)
+        (*this-&gt;_count)--;
+        if (*this-&gt;_count == 0)
         {
-            delete this->_ptr;
-            delete this->_count;
+            delete this-&gt;_ptr;
+            delete this-&gt;_count;
         }
     }
 
-    SmartPtr(const SmartPtr &ptr) //拷贝构造
+    SmartPtr(const SmartPtr &amp;ptr) //拷贝构造
     {
-        if (this != &ptr)
+        if (this != &amp;ptr)
         {
-            this->_ptr = ptr._ptr;
-            this->_count = ptr._count;
-            (*this->_count)++;
+            this-&gt;_ptr = ptr._ptr;
+            this-&gt;_count = ptr._count;
+            (*this-&gt;_count)++;
         }
     }
 
-    SmartPtr &operator=(const SmartPtr &ptr) //赋值运算符重载
+    SmartPtr &amp;operator=(const SmartPtr &amp;ptr) //赋值运算符重载
     {
-        if (this->_ptr == ptr._ptr)
+        if (this-&gt;_ptr == ptr._ptr)
         {
             return *this;
         }
-        if (this->_ptr)
+        if (this-&gt;_ptr)
         {
-            (*this->_count)--;
-            if (this->_count == 0)
+            (*this-&gt;_count)--;
+            if (this-&gt;_count == 0)
             {
-                delete this->_ptr;
-                delete this->_count;
+                delete this-&gt;_ptr;
+                delete this-&gt;_count;
             }
         }
-        this->_ptr = ptr._ptr;
-        this->_count = ptr._count;
-        (*this->_count)++;
+        this-&gt;_ptr = ptr._ptr;
+        this-&gt;_count = ptr._count;
+        (*this-&gt;_count)++;
         return *this;
     }
 
-    T &operator*()
+    T &amp;operator*()
     {
-        assert(this->_ptr == nullptr);
-        return *(this->_ptr);
+        assert(this-&gt;_ptr == nullptr);
+        return *(this-&gt;_ptr);
     }
 
-    T *operator->()
+    T *operator-&gt;()
     {
-        assert(this->_ptr == nullptr);
-        return this->_ptr;
+        assert(this-&gt;_ptr == nullptr);
+        return this-&gt;_ptr;
     }
 
     size_t use_count()
     {
-        return *this->count;
+        return *this-&gt;count;
     }
-};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></typename></memory></iostream></code></pre>
 <h4 id="6-智能指针内存泄露问题和如何解决"><a href="#6-智能指针内存泄露问题和如何解决" class="headerlink" title="6.智能指针内存泄露问题和如何解决"></a>6.智能指针内存泄露问题和如何解决</h4><p><a href="http://senlinzhan.github.io/2015/04/24/%E6%B7%B1%E5%85%A5shared-ptr/" target="_blank" rel="noopener">http://senlinzhan.github.io/2015/04/24/%E6%B7%B1%E5%85%A5shared-ptr/</a></p>
 <p>weak_ptr如何解决shared_ptr的循环引用问题，通过<code>shared_ptr</code>创建的两个对象，同时它们的内部均包含<code>shared_ptr</code>指向对方。</p>
 <ul>
@@ -690,7 +690,7 @@ private:
 <li>重写：一个方法实现不同的功能，用于子类继承父类重写父类非私有方法，参数列表，返回等必须一致，静态方法不能重写成非静态方法</li>
 </ul>
 <h4 id="11-函数指针是什么"><a href="#11-函数指针是什么" class="headerlink" title="11.函数指针是什么"></a>11.函数指针是什么</h4><p>指向函数可用于代替函数</p>
-<pre class="line-numbers language-C++"><code class="language-C++">int (*p)(int, int) = &max<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-C++"><code class="language-C++">int (*p)(int, int) = &amp;max<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h4 id="12-fork函数"><a href="#12-fork函数" class="headerlink" title="12.fork函数"></a>12.fork函数</h4><p>创建一个和当前进程映像一样的进程，可再通过exec()载入二进制映像，替换当前进程的映像，以往的fork会将所有内核数据结构复制一次，现在会采用写时复制，有需要才会复制</p>
 <h4 id="13-析构函数作用"><a href="#13-析构函数作用" class="headerlink" title="13.析构函数作用"></a>13.析构函数作用</h4><p>当对象结束其生命周期，系统会调用，如果没有编写，编译器一般也会自动生成一个析构函数，析构的顺序是：1派生类 2对象成员 3基类析构函数</p>
 <h4 id="14-隐式类型转换"><a href="#14-隐式类型转换" class="headerlink" title="14.隐式类型转换"></a>14.隐式类型转换</h4><ul>
@@ -814,28 +814,28 @@ private:
 <p>array 保存在栈内存中，相比堆内存中的vector，我们就能够灵活的访问元素，获得更高的性能；同时真是由于其堆内存存储的特性，有些时候我们还需要自己负责释放这些资源。</p>
 <p>tuple区分于pair，可以任意种类型闭包，用get&lt;&gt;来寻找,但是get内只能用常量</p>
 <p>tuple遍历：</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">Tuple</span><span class="token punctuation">,</span> std<span class="token operator">::</span>size_t N<span class="token operator">></span>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">Tuple</span><span class="token punctuation">,</span> std<span class="token operator">::</span>size_t N<span class="token operator">&gt;</span>
 <span class="token keyword">struct</span> TuplePrinter <span class="token punctuation">{</span> 
   <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword">const</span> Tuple<span class="token operator">&amp;</span> t<span class="token punctuation">)</span> 
   <span class="token punctuation">{</span> 
-    TuplePrinter<span class="token operator">&lt;</span>Tuple<span class="token punctuation">,</span> N <span class="token operator">-</span> <span class="token number">1</span><span class="token operator">></span><span class="token operator">::</span><span class="token function">print</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span> 
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">", "</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>get<span class="token operator">&lt;</span>N <span class="token operator">-</span> <span class="token number">1</span><span class="token operator">></span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    TuplePrinter<span class="token operator">&lt;</span>Tuple<span class="token punctuation">,</span> N <span class="token operator">-</span> <span class="token number">1</span><span class="token operator">&gt;</span><span class="token operator">::</span><span class="token function">print</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">", "</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>get<span class="token operator">&lt;</span>N <span class="token operator">-</span> <span class="token number">1</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span> 
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">Tuple</span><span class="token operator">></span>
-<span class="token keyword">struct</span> TuplePrinter<span class="token operator">&lt;</span>Tuple<span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">></span><span class="token punctuation">{</span> 
+<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">class</span> <span class="token class-name">Tuple</span><span class="token operator">&gt;</span>
+<span class="token keyword">struct</span> TuplePrinter<span class="token operator">&lt;</span>Tuple<span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">&gt;</span><span class="token punctuation">{</span> 
   <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword">const</span> Tuple<span class="token operator">&amp;</span> t<span class="token punctuation">)</span> 
   <span class="token punctuation">{</span> 
-    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>get<span class="token operator">&lt;</span><span class="token number">0</span><span class="token operator">></span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>get<span class="token operator">&lt;</span><span class="token number">0</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span> 
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> Args<span class="token operator">></span>
-<span class="token keyword">void</span> <span class="token function">PrintTuple</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token operator">::</span>tuple<span class="token operator">&lt;</span>Args<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">></span><span class="token operator">&amp;</span> t<span class="token punctuation">)</span>
+<span class="token keyword">template</span><span class="token operator">&lt;</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> Args<span class="token operator">&gt;</span>
+<span class="token keyword">void</span> <span class="token function">PrintTuple</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token operator">::</span>tuple<span class="token operator">&lt;</span>Args<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token operator">&gt;</span><span class="token operator">&amp;</span> t<span class="token punctuation">)</span>
 <span class="token punctuation">{</span> 
   std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"("</span><span class="token punctuation">;</span>
-  TuplePrinter<span class="token operator">&lt;</span><span class="token keyword">decltype</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">(</span>Args<span class="token punctuation">)</span><span class="token operator">></span><span class="token operator">::</span><span class="token function">print</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  TuplePrinter<span class="token operator">&lt;</span><span class="token keyword">decltype</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">sizeof</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">(</span>Args<span class="token punctuation">)</span><span class="token operator">&gt;</span><span class="token operator">::</span><span class="token function">print</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span><span class="token punctuation">;</span> 
   std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">")\n"</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
@@ -873,7 +873,7 @@ private:
 </li>
 <li><p>模块的使用</p>
 <p>不再需要头文件，模块只处理一次，编译更快，并提供import 头文件的方式，将其自动转化为一个模块。</p>
-<pre class="line-numbers language-javascript"><code class="language-javascript">concept Addable <span class="token operator">=</span> requires <span class="token punctuation">(</span>T obj<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">{</span>obj <span class="token operator">+</span> obj<span class="token punctuation">}</span><span class="token operator">-</span><span class="token operator">></span>std<span class="token punctuation">:</span><span class="token punctuation">:</span>same_as<span class="token operator">&lt;</span>T<span class="token operator">></span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-javascript"><code class="language-javascript">concept Addable <span class="token operator">=</span> requires <span class="token punctuation">(</span>T obj<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">{</span>obj <span class="token operator">+</span> obj<span class="token punctuation">}</span><span class="token operator">-</span><span class="token operator">&gt;</span>std<span class="token punctuation">:</span><span class="token punctuation">:</span>same_as<span class="token operator">&lt;</span>T<span class="token operator">&gt;</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>上述代码的含义即是，就是T类型应该支持加法运算，而且结果类型还是T。</p>
 </li>
 <li><p>协程</p>
@@ -919,21 +919,21 @@ private:
 <li><h5 id="左值引用："><a href="#左值引用：" class="headerlink" title="左值引用："></a>左值引用：</h5></li>
 </ul>
 <pre class="line-numbers language-C++"><code class="language-C++">int a = 10;
-int &b = a;  // 定义一个左值引用变量
+int &amp;b = a;  // 定义一个左值引用变量
 b = 20;      // 通过左值引用修改引用内存的值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p>左值引用在汇编层面其实和普通的指针是一样的；定义引用变量必须初始化，因为引用其实就是一个别名，需要告诉编译器定义的是谁的引用。</p>
-<pre class="line-numbers language-C++"><code class="language-C++">int &var = 10;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-C++"><code class="language-C++">int &amp;var = 10;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>上述代码是无法编译通过的，因为10无法进行取地址操作，无法对一个立即数取地址，因为立即数并没有在内存中存储，而是存储在寄存器中，可以通过下述方法解决：</p>
-<pre class="line-numbers language-C++"><code class="language-C++">const int &var = 10;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-C++"><code class="language-C++">const int &amp;var = 10;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>使用常引用来引用常量数字10，因为此刻内存上产生了临时变量保存了10，这个临时变量是可以进行取地址操作的，因此var引用的其实是这个临时变量，相当于下面的操作：</p>
 <pre class="line-numbers language-C++"><code class="language-C++">const int temp = 10; 
-const int &var = temp;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+const int &amp;var = temp;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>根据上述分析，得出如下结论：</p>
 <p>左值引用要求右边的值必须能够取地址，如果无法取地址，可以用常        引用；<br>但使用常引用后，我们只能通过引用来读取数据，无法去修改数据，        因为其被const修饰成常量引用了。</p>
 <ul>
-<li><h5 id="右值引用"><a href="#右值引用" class="headerlink" title="右值引用"></a>右值引用</h5><pre class="line-numbers language-text"><code class="language-text">类型 && 引用名 = 右值表达式;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<li><h5 id="右值引用"><a href="#右值引用" class="headerlink" title="右值引用"></a>右值引用</h5><pre class="line-numbers language-text"><code class="language-text">类型 &amp;&amp; 引用名 = 右值表达式;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>右值引用是C++ 11新增的特性，所以C++ 98的引用为左值引用。右值引用用来绑定到右值，绑定到右值以后本来会被销毁的右值的生存期会延长至与绑定到它的右值引用的生存期。</p>
-<pre class="line-numbers language-C++"><code class="language-C++">int &&var = 10;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-C++"><code class="language-C++">int &amp;&amp;var = 10;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>在汇编层面右值引用做的事情和常引用是相同的，即产生临时量来存储常量。但是，唯一 一点的区别是，右值引用可以进行读写操作，而常引用只能进行读操作。</p>
 <p>右值引用的存在并不是为了取代左值引用，而是充分利用右值(特别是临时对象)的构造来减少对象构造和析构操作以达到提高效率的目的。</p>
 </li>
@@ -989,12 +989,12 @@ const int &var = temp;<span aria-hidden="true" class="line-numbers-rows"><span><
 <pre class="line-numbers language-C"><code class="language-C">#include <unistd.h>
 int brk( const void *addr )
 void* sbrk ( intptr_t incr );
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></unistd.h></code></pre>
 </li>
 <li><p>mmap函数</p>
-<pre class="line-numbers language-C"><code class="language-C">#include <sys/mman.h>
+<pre class="line-numbers language-C"><code class="language-C">#include <sys mman.h="">
 void *mmap(void *addr, size\_t length, int prot, int flags, int fd, off\_t offset);
-int munmap(void *addr, size_t length);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+int munmap(void *addr, size_t length);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></sys></code></pre>
 <p>mmap函数第一种用法是映射磁盘文件到内存中；而malloc使用的mmap函数的第二种用法，即匿名映射，匿名映射不映射磁盘文件，而是向映射区申请一块内存。munmap函数是用于释放内存，第一个参数为内存首地址，第二个参数为内存的长度。接下来看下mmap函数的参数。</p>
 <ul>
 <li><p>prot:期望的内存保护标志,不能与文件的打开模式冲突。是以下的某个值,可以通过 or 运算合理地组合在一起。PROT_EXEC(页内容可以被执行);PROT_READ(页内容可以被读取);PROT_WRITE(页可以被写入);PROT_NONE(页不可访问).</p>
@@ -1109,7 +1109,7 @@ struct mem_control_block {
     {
         return NULL;
     }
-    if((src < dst) && (char *)src + size > (char *)dst) // 自后向前拷贝（重叠了）
+    if((src &lt; dst) &amp;&amp; (char *)src + size &gt; (char *)dst) // 自后向前拷贝（重叠了）
     {
         psrc = (char *)src + size - 1;
         pdst = (char *)dst + size - 1;
@@ -1135,7 +1135,7 @@ struct mem_control_block {
 {  
     const unsigned char uc = c;  
     unsigned char *su;  
-    for(su = s;0 < n;++su,--n)  
+    for(su = s;0 &lt; n;++su,--n)  
         *su = uc;  
     return s;  
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
@@ -1605,10 +1605,10 @@ class MyStruct1{
 };
 int main()
 {
-    cout << sizeof(MyStruct) << endl;
-    cout << sizeof(MyStruct1) << endl;
+    cout &lt;&lt; sizeof(MyStruct) &lt;&lt; endl;
+    cout &lt;&lt; sizeof(MyStruct1) &lt;&lt; endl;
     return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></iostream></code></pre>
 <ul>
 <li>进行内存对齐的原因：<ul>
 <li>平台的移植性好，并不是所有的硬件平台都能存放任意地址的数据，某些平台只能在某些地址访问特定类型的数据，否则就会出现异常</li>
@@ -1623,7 +1623,7 @@ int main()
 <li>虚继承对类的大小有影响，是因为虚基表指针带来的影响</li>
 <li>空类的大小是 1</li>
 </ul>
-<pre class="line-numbers language-C++"><code class="language-C++">#include <bits/stdc++.h>
+<pre class="line-numbers language-C++"><code class="language-C++">#include <bits stdc++.h="">
 using namespace std;
 
 class A{
@@ -1652,12 +1652,12 @@ class D{
     virtual int fun(){}
 };
 int main(){
-    cout << sizeof(A) << endl;//1
-    cout << sizeof(B) << endl;//4:表示一个整型变量的大小
-    cout << sizeof(C) << endl;//8：虚函数表的指针的大小
-    cout << sizeof(D) << endl;//16：整型变量的大小+虚函数指针的大小+对齐原则（4）
+    cout &lt;&lt; sizeof(A) &lt;&lt; endl;//1
+    cout &lt;&lt; sizeof(B) &lt;&lt; endl;//4:表示一个整型变量的大小
+    cout &lt;&lt; sizeof(C) &lt;&lt; endl;//8：虚函数表的指针的大小
+    cout &lt;&lt; sizeof(D) &lt;&lt; endl;//16：整型变量的大小+虚函数指针的大小+对齐原则（4）
     return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></bits></code></pre>
 <h4 id="12-内存管理，段和页和段页"><a href="#12-内存管理，段和页和段页" class="headerlink" title="12.内存管理，段和页和段页"></a>12.内存管理，段和页和段页</h4><ul>
 <li>在基本的分页概念中，我们把程序分成<strong>等长</strong>的小块。这些小块叫做“<strong>页（Page）</strong>”，同样内存也被我们分成了和页面同样大小的”<strong>页框（Frame）“，</strong>一个页可以装到一个页框里。在执行程序的时候我们根据一个页表去查找某个页面在内存的某个页框中，由此完成了逻辑到物理的映射。</li>
 </ul>
@@ -2949,17 +2949,17 @@ void LSDSort(int *a, int n)
 <pre class="line-numbers language-c++"><code class="language-c++">class Singleton_lazy {
 private:
     Singleton_lazy() {
-        cout << "Singleton_lazy() 构造函数被调用！" << endl;
+        cout &lt;&lt; "Singleton_lazy() 构造函数被调用！" &lt;&lt; endl;
     }
 
 public:
-    using Ptr = shared_ptr<Singleton_lazy>;  //使用智能指针
+    using Ptr = shared_ptr<singleton_lazy>;  //使用智能指针
 
     static Ptr getInstance() {  //第一处更改，返回智能指针
         if(pSingleton == nullptr){  //双检锁，避免重复加锁
             lock_guard<mutex> lk(m_mutex);
             if (pSingleton == nullptr) {
-                pSingleton = shared_ptr<Singleton_lazy>(new Singleton_lazy); //第二处更改，创建智能指针对象
+                pSingleton = shared_ptr<singleton_lazy>(new Singleton_lazy); //第二处更改，创建智能指针对象
             }
         }
         return pSingleton;
@@ -2974,7 +2974,7 @@ mutex Singleton_lazy::m_mutex;
 void test1() {
     Singleton_lazy::Ptr s1 = Singleton_lazy::getInstance(); //第五处
     Singleton_lazy::Ptr s2 = Singleton_lazy::getInstance();
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></singleton_lazy></mutex></singleton_lazy></code></pre>
 <h4 id="2-工厂模式"><a href="#2-工厂模式" class="headerlink" title="2.工厂模式"></a><strong>2.工厂模式</strong></h4><p><a href="https://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/factory_method.html" target="_blank" rel="noopener">https://design-patterns.readthedocs.io/zh_CN/latest/creational_patterns/factory_method.html</a></p>
 <h4 id="3-观察者模式"><a href="#3-观察者模式" class="headerlink" title="3.观察者模式"></a>3.观察者模式</h4><p><a href="https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/observer.html" target="_blank" rel="noopener">https://design-patterns.readthedocs.io/zh_CN/latest/behavioral_patterns/observer.html</a></p>
 <h4 id="4-装饰器模式"><a href="#4-装饰器模式" class="headerlink" title="4.装饰器模式"></a>4.装饰器模式</h4><p><a href="https://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/decorator.html" target="_blank" rel="noopener">https://design-patterns.readthedocs.io/zh_CN/latest/structural_patterns/decorator.html</a></p>
@@ -3000,13 +3000,13 @@ void test1() {
 {
     int random;
     srand(time(NULL));//设置利用系统时间来返回随机数
-    for (int i = 0; i < m; i++)
+    for (int i = 0; i &lt; m; i++)
     {
         random = (rand() % (n - i)) + i;//产生i~n-1范围的随机数
         swap(vec[i], vec[random]);
-        cout << vec[i] << " ";
+        cout &lt;&lt; vec[i] &lt;&lt; " ";
     }
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></int></code></pre>
 <h1 id="框架"><a href="#框架" class="headerlink" title="框架"></a>框架</h1><h3 id="1-RPC框架"><a href="#1-RPC框架" class="headerlink" title="1.RPC框架"></a>1.RPC框架</h3><h4 id="什么是-RPC-？"><a href="#什么是-RPC-？" class="headerlink" title="什么是 RPC ？"></a>什么是 RPC ？</h4><blockquote>
 <ul>
 <li>RPC (Remote Procedure Call)即<strong>远程过程调用</strong>，是分布式系统常见的一种通信方法。它允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，而不用程序员显式编码这个远程调用的细节。</li>
@@ -3125,7 +3125,7 @@ void test1() {
 <h2 id="3-拼图小游戏"><a href="#3-拼图小游戏" class="headerlink" title="3.拼图小游戏"></a>3.拼图小游戏</h2><ul>
 <li><p>切图：将一个图片根据等级进行切图，可采用sort函数来实现乱序，也要记得对图片进行压缩</p>
 <pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">compare</span><span class="token punctuation">(</span>ImagePiece a<span class="token punctuation">,</span> ImagePiece b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0.5</span> <span class="token operator">?</span> <span class="token number">1</span> <span class="token operator">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 返回一个随机数</span>
+    <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0.5</span> <span class="token operator">?</span> <span class="token number">1</span> <span class="token operator">:</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 返回一个随机数</span>
 <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>错误情况的排除，自定义一个check函数来检测当前拼图是否有解</p>
@@ -3754,7 +3754,7 @@ void test1() {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">32.4k</span>
+            <span class="white-color">70.7k</span>
             
 
             <br>
