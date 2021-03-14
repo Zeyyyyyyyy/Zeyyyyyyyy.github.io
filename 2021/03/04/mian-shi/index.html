@@ -450,14 +450,14 @@ static作用">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    24.3k
+                    26.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    86 分
+                    92 分
                 </div>
                 
                 
@@ -685,13 +685,31 @@ private:
 <p>为了指向对象的虚表，对象内部包含一个虚表指针*_vptr来指向自己所使用的虚表</p>
 <p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://img-blog.csdnimg.cn/20210107204916729.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpaGFvMjE=,size_16,color_FFFFFF,t_70#pic_center" alt="img"></p>
 <p>动态绑定即为对象通过虚表调用虚函数，表现出来的是运行时多态，而传统的函数调用称之为静态绑定，即函数调用在编译阶段就确定下来了</p>
-<h4 id="10-重载和覆盖（重写）"><a href="#10-重载和覆盖（重写）" class="headerlink" title="10.重载和覆盖（重写）"></a>10.重载和覆盖（重写）</h4><ul>
-<li>重载：名称相同而参数形式不同</li>
-<li>重写：一个方法实现不同的功能，用于子类继承父类重写父类非私有方法，参数列表，返回等必须一致，静态方法不能重写成非静态方法</li>
+<h4 id="10-重载和覆盖（重写）"><a href="#10-重载和覆盖（重写）" class="headerlink" title="10.重载和覆盖（重写）"></a>10.重载和覆盖（重写）</h4><p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://img-blog.csdnimg.cn/20200815222458820.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDgyNjM1Ng==,size_16,color_FFFFFF,t_70#pic_center" alt="img"></p>
+<ul>
+<li><p>重载：名称相同而参数形式不同</p>
+</li>
+<li><p>重写：一个方法实现不同的功能，用于子类继承父类重写父类非私有方法，参数列表，返回等必须一致，静态方法不能重写成非静态方法</p>
+</li>
+<li><p>重载是怎么解决冲突的：</p>
+<p>上面的研究都是基于g++编译器，如果用的是vs编译器的话，对应关系跟这个肯定不一样。但是规则是一样的：“<strong>返回类型</strong>+<strong>函数名</strong>+<strong>参数列表</strong>”。</p>
+</li>
 </ul>
 <h4 id="11-函数指针是什么"><a href="#11-函数指针是什么" class="headerlink" title="11.函数指针是什么"></a>11.函数指针是什么</h4><p>指向函数可用于代替函数</p>
 <pre class="line-numbers language-C++"><code class="language-C++">int (*p)(int, int) = &max<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h4 id="12-fork函数"><a href="#12-fork函数" class="headerlink" title="12.fork函数"></a>12.fork函数</h4><p>创建一个和当前进程映像一样的进程，可再通过exec()载入二进制映像，替换当前进程的映像，以往的fork会将所有内核数据结构复制一次，现在会采用写时复制，有需要才会复制</p>
+<h4 id="12-fork函数"><a href="#12-fork函数" class="headerlink" title="12.fork函数"></a>12.fork函数</h4><p>应用场景：</p>
+<p>一种可能见到的场景是在服务器程序中，一个请求到来后，为了避免服务器阻塞，fork出一个子进程处理请求，父进程仍然继续等待请求到来。但这种方式无疑开销会稍大。</p>
+<p>另一种最常见的就是执行一个不同的程序，例如我们在shell终端执行一条命令，实际上就是bash（或者其他）调用fork之后，在执行exec族函数。</p>
+<p>流程：</p>
+<p>如果调用成功，它将返回两次，子进程返回值是0；父进程返回的是非0正值，表示子进程的进程id；如果调用失败将返回-1，并且置errno变量。</p>
+<p>创建一个和当前进程映像一样的进程，<em>子进程</em>会继承父进程的资源，包括文件设备访问权限、文件描述符等，可再通过exec()载入二进制映像，替换当前进程的映像，以往的fork会将所有内核数据结构复制一次，现在会采用写时复制，有需要才会复制</p>
+<p>特点：</p>
+<ul>
+<li>fork调用一次，返回两次</li>
+<li>一个进程可以有多个子进程，但同一时刻最多只有一个父进程</li>
+<li>子进程继承了父进程很多属性</li>
+<li>父子进程执行的先后顺序不一定</li>
+</ul>
 <h4 id="13-析构函数作用"><a href="#13-析构函数作用" class="headerlink" title="13.析构函数作用"></a>13.析构函数作用</h4><p>当对象结束其生命周期，系统会调用，如果没有编写，编译器一般也会自动生成一个析构函数，析构的顺序是：1派生类 2对象成员 3基类析构函数</p>
 <h4 id="14-隐式类型转换"><a href="#14-隐式类型转换" class="headerlink" title="14.隐式类型转换"></a>14.隐式类型转换</h4><ul>
 <li><p>算术类型转换：1.整形提升 2.符号类型转化为无符号 3.条件判断中，非布尔转化为布尔</p>
@@ -1044,10 +1062,7 @@ struct mem_control_block {
 <li>申请的内存没有被正确释放，导致后续程序这块内存被永远占用</li>
 </ul>
 <h4 id="29-volatile"><a href="#29-volatile" class="headerlink" title="29.volatile"></a>29.volatile</h4><ul>
-<li><p>是一种类型修饰符，用其声明的类型变量可以被某些编译器未知的因素更改，从而可提供对其特殊地址的稳定访问</p>
-</li>
-<li><p>在多线程下的应用： 有些变量是用volatile关键字声明的。当两个线程都要用到某一个变量且该变量的值会被改变时，应该用volatile声明，该关键字的作用是<strong>防止优化编译器把变量从内存装入CPU寄存器中。</strong>如果变量被装入寄存器，那么两个线程有可能一个使用内存中的变量，一个使用寄存器中的变量，这会造成程序的错误执行。volatile的意思是<strong>让编译器每次操作该变量时一定要从内存中真正取出，而不是使用已经存在寄存器中的值，</strong></p>
-</li>
+<li>在多线程下的应用： 有些变量是用volatile关键字声明的。当两个线程都要用到某一个变量且该变量的值会被改变时，应该用volatile声明，该关键字的作用是<strong>防止优化编译器把变量从内存装入CPU寄存器中。</strong>如果变量被装入寄存器，那么两个线程有可能一个使用内存中的变量，一个使用寄存器中的变量，这会造成程序的错误执行。volatile的意思是<strong>让编译器每次操作该变量时一定要从内存中真正取出，而不是使用已经存在寄存器中的值，</strong></li>
 </ul>
 <h4 id="30-define的作用缺点"><a href="#30-define的作用缺点" class="headerlink" title="30.define的作用缺点"></a>30.define的作用缺点</h4><p>define在预编译期间执行，而using，typedef则是在编译期间。</p>
 <p>而且因为define是预编译期间替换，无类型检查，写错也不会发现</p>
@@ -1196,6 +1211,25 @@ struct mem_control_block {
 <h4 id="38-模板特化和模板偏特化"><a href="#38-模板特化和模板偏特化" class="headerlink" title="38.模板特化和模板偏特化"></a>38.模板特化和模板偏特化</h4><p><a href="https://harttle.land/2015/10/03/cpp-template.html" target="_blank" rel="noopener">https://harttle.land/2015/10/03/cpp-template.html</a></p>
 <h4 id="39-空类默认生成哪些函数："><a href="#39-空类默认生成哪些函数：" class="headerlink" title="39.空类默认生成哪些函数："></a>39.空类默认生成哪些函数：</h4><p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="C:%5CUsers%5C17362%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210207185635016.png" alt="image-20210207185635016"></p>
 <h4 id="40-条件编译ifdef和-ifndef作用："><a href="#40-条件编译ifdef和-ifndef作用：" class="headerlink" title="40.条件编译ifdef和 ifndef作用："></a>40.条件编译ifdef和 ifndef作用：</h4><p>条件编译，如果已经生成了这个头文件，就不用再编译生成一次了</p>
+<h3 id="41-构造函数不能是虚函数"><a href="#41-构造函数不能是虚函数" class="headerlink" title="41.构造函数不能是虚函数"></a>41.构造函数不能是虚函数</h3><ol>
+<li><p>从vptr角度解释</p>
+<pre><code>虚函数的调用是通过虚函数表来查找的，而虚函数表由类的实例化对象的vptr指针(vptr可以参考C++的虚函数表指针vptr)指向，该指针存放在对象的内部空间中，需要调用构造函数完成初始化。如果构造函数是虚函数，那么调用构造函数就需要去找vptr，但此时vptr还没有初始化！</code></pre></li>
+<li><p>从多态角度解释<br>　　虚函数主要是实现多态，在运行时才可以明确调用对象，根据传入的对象类型来调用函数，例如通过父类的指针或者引用来调用它的时候可以变成调用子类的那个成员函数。而构造函数是在创建对象时自己主动调用的，不可能通过父类的指针或者引用去调用。那使用虚函数也没有实际意义。<br>　　在调用构造函数时还不能确定对象的真实类型（由于子类会调父类的构造函数）；并且构造函数的作用是提供初始化，在对象生命期仅仅运行一次，不是对象的动态行为，没有必要成为虚函数。</p>
+</li>
+</ol>
+<h3 id="42-C和Python的区别"><a href="#42-C和Python的区别" class="headerlink" title="42.C和Python的区别"></a>42.C和Python的区别</h3><p>1、语言类型不同。</p>
+<p>Python是一种动态类型语言，又是强类型语言。它们确定一个变量的类型是在您第一次给它赋值的时候。C 是静态类型语言，一种在编译期间就确定数据类型的语言。大多数静态类型语言是通过要求在使用任一变量之前声明其数据类型来保证这一点的。</p>
+<p>2、对象机制不同。</p>
+<p>Python中所有的数据，都是由对象或者对象之间的关系表示的，函数是对象，字符串是对象，每个东西都是对象的概念。每一个对象都有三种属性： 实体，类型和值。</p>
+<p>C中没有对象这个概念，只有“数据的表示”，比如说，如果有两个int变量a和b，想比较大小，可以用a ＝＝ b来判断，但是如果是两个字符串变量a和b，就不得不用strcmp来比较了，因为此时，a和b本质上是指向字符串的指针，如果直接用＝＝比较， 那比较的实际是指针中存储的值地址。</p>
+<p>3、变量类型不同。</p>
+<p>python六个标准的数据类型：Number数字、String字符串、List列表、Tuple元祖、Sets集合、Dictionary字典，数字类型有四种类型：整数、布尔型、浮点数和复数。C语言也可分四类：基本类型、枚举类型、void的类型、派生类型。基本类型：整数类型、浮点类型。</p>
+<p>4、函数库的使用方法不同。</p>
+<p>在C语言中使用那个库函数，需要引入头文件用include引入，而在python中需要引入别的模块或者函数时需要用import引入。</p>
+<p>两者的不同机制是C语言中include是告诉预处理器，这个include指定的文件的内容，要当作本地源文件出现过，而python中的import可以通过简单的import 导入，或者是 import numpy as np 。</p>
+<p>5、全局变量不同。</p>
+<p>在C语言中，声明全局变量，如果值是恒定的，那么可以直接用#define声明，如果只是声明全局，并且变量的值是可变的，那么直接类似int a 就可以了。</p>
+<p>在python中，声明全局变量时，需要加上global，类似global a，在函数里面使用的时候需要先声明global a ，否则直接用a那么python会重新创建一个新的本地对象并将新的值赋值给他，原来的全局变量的值并不变化。</p>
 <h1 id="STL："><a href="#STL：" class="headerlink" title="STL："></a>STL：</h1><h4 id="1-STL有哪几部分组成"><a href="#1-STL有哪几部分组成" class="headerlink" title="1.STL有哪几部分组成"></a>1.STL有哪几部分组成</h4><p>容器：各种数据结构，从实现的角度来看，STL容器是一种class template</p>
 <p>空间配置器：负责动态空间的配置和管理</p>
 <p>迭代器：在23个设计模式中，有一种是迭代器模式（提供一种方法，使之能够依序访问某个容器所含的各个元素，而无需暴露该容器的内部表述方式），其行为类似于智能指针；STL的设计中，将数据容器和算法分开，彼此独立设计，通过迭代器(容器和算法的胶粘剂)将他们撮合在一起。</p>
@@ -1351,6 +1385,19 @@ struct mem_control_block {
 <li>hash_multiap：底层为哈希表，无序，可重复</li>
 </ul>
 <p>首先vector属于顺序容器，其元素与存储位置与操作操作有关；set属于关联容器，其元素相当于键值。set能够保证它里面所有的元素都是不重复的（multiset除外）。<br>其次，由于存储结构不同，vector擅长于解决某个位置是什么值的问题，而set擅长于解决，某个元素在那个位置的问题，知道元素的内容，查找它的位置。因此vector特别好的支持随机访问，而set不支持（不支持下标访问）</p>
+<h3 id="10-STL迭代器失效情况"><a href="#10-STL迭代器失效情况" class="headerlink" title="10.STL迭代器失效情况"></a>10.STL迭代器失效情况</h3><p>迭代器失效类型：</p>
+<ul>
+<li>由于插入元素，使得容器元素整体<code>迁移</code>导致存放原容器元素的空间不再有效，从而使得指向原空间的迭代器失效；</li>
+<li>由于删除元素，使得某些元素<code>次序</code>发生变化导致原本指向某元素的迭代器不再指向期望指向的元素。</li>
+</ul>
+<h3 id="11-deque的原理"><a href="#11-deque的原理" class="headerlink" title="11.deque的原理"></a>11.deque的原理</h3><p>双端队列(deque)是一种支持向两端高效地插入数据、支持随机访问的容器。其内部实现原理如下：双端队列的数据被表示为一个分段数组，容器中的元素分段存放在一个个大小固定的数组中，此外容器还需要维护一个存放这些数组首地址的索引数组。参见下图</p>
+<p><a href="https://ivanzz1001.github.io/records/assets/img/cplusplus/cpp_stl_iterator.jpg" target="_blank" rel="noopener"><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://ivanzz1001.github.io/records/assets/img/cplusplus/cpp_stl_iterator.jpg" alt="cpp-stl-iterator"></a></p>
+<p>由于分段数组的大小是固定的，并且它们的首地址被连续存放在索引数组中，因此可以对其进行随机访问，但效率比vector低很多。</p>
+<ul>
+<li>向两端加入新元素时，如果这一端的分段数组未满，则可以直接加入； 如果这一端的分段数组已满，只需创建新的分段数组，并把该分段数组的地址加入到索引数组中即可。无论哪种情况，都不需要对已有元素进行移动，因此在双端队列的两端加入新的元素都具有较高的效率。</li>
+<li>当删除双端队列容器两端的元素时，由于不需要发生元素的移动，效率也是非常高的。</li>
+<li>双端队列中间插入元素时，需要将插入点到某一端之间的所有元素向容器的这一端移动，因此向中间插入元素效率较低，而且往往插入位置越靠近中间，效率越低。删除队列中元素时，情况也类似，由于被删元素到某一端之间的所有元素都要向中间移动，删除的位置越靠近中间，效率越低。</li>
+</ul>
 <h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h4 id="1-进程和线程的概念，为什么还要有线程，有什么区别"><a href="#1-进程和线程的概念，为什么还要有线程，有什么区别" class="headerlink" title="1.进程和线程的概念，为什么还要有线程，有什么区别"></a>1.进程和线程的概念，为什么还要有线程，有什么区别</h4><ul>
 <li><p>进程：是并发执行的程序在执行过程中分配和管理资源的基本单位，是一个动态概念，竞争计算机系统资源的基本单位。</p>
 </li>
@@ -1881,7 +1928,12 @@ int main(){
 <pre><code>1. 线程池初始化：用于创建一定数量的线程
 2. 线程池增加线程数量：用于任务过多时增加线程数量
 3. 线程池销毁：销毁线程池
-4. 往线程池中增加任务</code></pre><h4 id="22-中断"><a href="#22-中断" class="headerlink" title="22.中断"></a>22.中断</h4><ul>
+4. 往线程池中增加任务</code></pre><p>拒绝策略：</p>
+<p>1、直接丢弃（DiscardPolicy）</p>
+<p>2、丢弃队列中最老的任务(DiscardOldestPolicy)。</p>
+<p>3、抛异常(AbortPolicy)</p>
+<p>4、将任务分给调用线程来执行(CallerRunsPolicy)。</p>
+<h4 id="22-中断"><a href="#22-中断" class="headerlink" title="22.中断"></a>22.中断</h4><ul>
 <li><p>按中断源进行分类：发出中断请求的设备称为中断源。按中断源的不同，中断可分为</p>
 <p>内中断：即程序运行错误引起的中断</p>
 <p>外中断：即由外部设备、接口卡引起的中断</p>
@@ -1934,18 +1986,145 @@ int main(){
     else
           printf("Big Endian");<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>  大小端存储问题，如果小端方式中（i占至少两个字节的长度）则i所分配的内存最小地址那个字节中就存着1，其他字节是0.大端的话则1在i的最高地址字节处存放，char是一个字节，所以强制将char型量p指向i则p指向的一定是i的最低地址，那么就可以判断p中的值是不是1来确定是不是小端。</p>
+<h4 id="28-程序的内存分布："><a href="#28-程序的内存分布：" class="headerlink" title="28.程序的内存分布："></a>28.程序的内存分布：</h4><p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://pic1.zhimg.com/v2-2290195e73159ad0bd364cd3e926c370_1440w.jpg?source=172ae18b" alt="浅谈程序中的text段、data段和bss段"></p>
+<p>一个程序本质上都是由 bss段、data段、text段三个段组成——这是计算机程序设计中重要的基本概念。而且在嵌入式系统的设计中也非常重要，牵涉到嵌入式系统运行时的内存大小分配，存储单元占用空间大小的问题。</p>
+<p>在采用段式内存管理的架构中（比如intel的80x86系统），bss段（Block Started by Symbol segment）通常是指用来存放程序中未初始化的全局变量的一块内存区域，一般在初始化时bss 段部分将会清零（bss段属于静态内存分配，即程序一开始就将其清零了）。</p>
+<p>比如，在C语言程序编译完成之后，已初始化的全局变量保存在.data 段中，未初始化的全局变量保存在.bss 段中。</p>
+<p><strong>text段</strong>: 用于存放程序代码的区域， 编译时确定， 只读。更进一步讲是存放处理器的机器指令，当各个源文件单独编译之后生成目标文件，经连接器链接各个目标文件并解决各个源文件之间函数的引用，与此同时，还得将所有目标文件中的.text段合在一起，但不是简单的将它们“堆”在一起就完事，还需要处理各个段之间的函数引用问题。</p>
+<p>在嵌入式系统中，如果处理器是带MMU（MemoryManagement Unit，内存管理单元），那么当我们的可执行程序被加载到内存以后，通常都会将.text段所在的内存空间设置为只读，以保护.text中的代码不会被意外的改写（比如在程序出错时）。当然，如果没有MMU就无法获得这种代码保护功能。</p>
+<p><strong>data段</strong> :用于存放在编译阶段(而非运行时)就能确定的数据，可读可写。也是通常所说的静态存储区，赋了初值的全局变量、常量和静态变量都存放在这个域。</p>
 <h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><h4 id="1-TCP过程，如何保证可靠性，"><a href="#1-TCP过程，如何保证可靠性，" class="headerlink" title="1.TCP过程，如何保证可靠性，"></a>1.TCP过程，如何保证可靠性，</h4><ul>
-<li>可靠性，TCP通过以下方式来提供可靠性：<ul>
-<li>应用数据被分割成TCP认为最适合发送的数据块。这和UDP完全不同，应用程序产生的数据报长度将保持不变（将数据截断为合理的长度）</li>
-<li>当TCP发出一个段后，它启动一个定时器。等待目的端确认收到这个报文段。如果不能及时收到一个确认，将重发这个报文段。(超时重发)</li>
-<li>当TCP收到发自TCP连接另一端数据，它将发送一个确认。这个确认不是立即发送，通常推迟几分之一秒用来对包的完整性进行校验。</li>
-<li>TCP将保持它首部和数据的检验和。这是一个端到端的检验和，目的是检测数据在传输过程中的任何变化。如果收到段的检验和有差错，TCP将丢弃这个报文段和不确认收到此报文段。 (校验出包有错，丢弃报文段，不给出响应，TCP发送数据端，超时时会重发数据)。</li>
-<li>既然TCP报文段作为IP数据报来传输，而IP数据报的到达可能会失序，因此TCP报文段的到达也可能会失序。如果必要，TCP将对收到的数据进行重新排序，将收到的数据以正确的顺序交给应用层。 (对失序数据进行重新排序，然后才交给应用层)。</li>
-<li>既然IP数据报会发生重复，TCP的接收端必须丢弃重复的数据。(对于重复数据，能够丢弃重复数据)。</li>
-<li>TCP还能提供流量控制。TCP连接的每一方都有固定大小的缓冲空间。TCP的接收端只允许另一端发送接收端缓冲区所能接纳的数据。这将防止较快主机致使较慢主机的缓冲区溢出。(TCP可以进行流量控制，防止较快主机致使较慢主机的缓冲区溢出)TCP使用的流量控制协议是可变大小的滑动窗口协议。<br>滑动窗口协议机制建议参见：<a href="http://blog.chinaunix.net/uid-26275986-id-4109679.html" target="_blank" rel="noopener">http://blog.chinaunix.net/uid-26275986-id-4109679.html</a></li>
-<li>字节流服务<br>两个应用程序通过TCP连接交换8bit字节构成的字节流。TCP不在字节流中插入记录标识符。我们将这称为字节流服务（bytestreamservice）。<br>TCP对字节流的内容不作任何解释:: TCP对字节流的内容不作任何解释。TCP不知道传输的数据字节流是二进制数据，还是ASCII字符、EBCDIC字符或者其他类型数据。对字节流的解释由TCP连接双方的应用层解释。</li>
-<li>7、拥塞控制<br>流量控制解决了 两台主机之间因传送速率而可能引起的丢包问题，在一方面保证了TCP数据传送的可靠性。然而如果网络非常拥堵，此时再发送数据就会加重网络负担，那么发送的数据段很可能超过了最大生存时间也没有到达接收方，就会产生丢包问题。<br>为此TCP引入慢启动机制，先发出少量数据，就像探路一样，先摸清当前的网络拥堵状态后，再决定按照多大的速度传送数据。<br>此处引入一个拥塞窗口：<br>发送开始时定义拥塞窗口大小为1；每次收到一个ACK应答，拥塞窗口加1；而在每次发送数据时，发送窗口取拥塞窗口与接送段接收窗口最小者。<br>慢启动：在启动初期以指数增长方式增长；设置一个慢启动的阈值，当以指数增长达到阈值时就停止指数增长，按照线性增长方式增加；线性增长达到网络拥塞时立即“乘法减小”，拥塞窗口置回1，进行新一轮的“慢启动”，同时新一轮的阈值变为原来的一半。</li>
+<li><p>可靠性，TCP通过以下方式来提供可靠性：</p>
+<ul>
+<li><p>应用数据被分割成TCP认为最适合发送的数据块。这和UDP完全不同，应用程序产生的数据报长度将保持不变（将数据截断为合理的长度）</p>
+</li>
+<li><p>当TCP发出一个段后，它启动一个定时器。等待目的端确认收到这个报文段。如果不能及时收到一个确认，将重发这个报文段。(超时重发)</p>
+</li>
+<li><p>当TCP收到发自TCP连接另一端数据，它将发送一个确认。这个确认不是立即发送，通常推迟几分之一秒用来对包的完整性进行校验。</p>
+</li>
+<li><p>TCP将保持它首部和数据的检验和。这是一个端到端的检验和，目的是检测数据在传输过程中的任何变化。如果收到段的检验和有差错，TCP将丢弃这个报文段和不确认收到此报文段。 (校验出包有错，丢弃报文段，不给出响应，TCP发送数据端，超时时会重发数据)。</p>
+</li>
+<li><p>既然TCP报文段作为IP数据报来传输，而IP数据报的到达可能会失序，因此TCP报文段的到达也可能会失序。如果必要，TCP将对收到的数据进行重新排序，将收到的数据以正确的顺序交给应用层。 (对失序数据进行重新排序，然后才交给应用层)。</p>
+</li>
+<li><p>既然IP数据报会发生重复，TCP的接收端必须丢弃重复的数据。(对于重复数据，能够丢弃重复数据)。</p>
+</li>
+<li><p>TCP还能提供流量控制。TCP连接的每一方都有固定大小的缓冲空间。TCP的接收端只允许另一端发送接收端缓冲区所能接纳的数据。这将防止较快主机致使较慢主机的缓冲区溢出。(TCP可以进行流量控制，防止较快主机致使较慢主机的缓冲区溢出)TCP使用的流量控制协议是可变大小的滑动窗口协议。<br>滑动窗口协议机制建议参见：<a href="http://blog.chinaunix.net/uid-26275986-id-4109679.html" target="_blank" rel="noopener">http://blog.chinaunix.net/uid-26275986-id-4109679.html</a></p>
+<h2 id="滑动窗口协议："><a href="#滑动窗口协议：" class="headerlink" title="滑动窗口协议："></a>滑动窗口协议：</h2><ul>
+<li>TCP协议的使用</li>
+<li>维持发送方/接收方缓冲区 缓冲区是 用来解决网络之间数据不可靠的问题，例如丢包，重复包，出错，乱序</li>
 </ul>
+<p>在TCP协议中，发送方和接受方通过各自维护自己的缓冲区。通过商定包的重传机制等一系列操作，来解决不可靠的问题。</p>
+<h2 id="问题一：如何保证次序？"><a href="#问题一：如何保证次序？" class="headerlink" title="问题一：如何保证次序？"></a>问题一：如何保证次序？</h2><blockquote>
+<p>提出问题：在我们滑动窗口协议之前，我们如何来保证发送方与接收方之间，每个包都能被收到。并且是按次序的呢？</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>![问题1](https://user-gold-cdn.xitu.io/2019/3/30/169cd8c84bdacece?w=880&amp;h=411&amp;f=png&amp;s=146266)
+
+发送方发送一个包1，这时候接收方确认包1。发送包2，确认包2。就这样一直下去，知道把数据完全发送完毕，这样就结束了。那么就解决了丢包，出错，乱序等一些情况！同时也存在一些问题。问题：吞吐量非常的低。我们发完包1，一定要等确认包1.我们才能发送第二个包。
+
+
+
+## 问题二：如何提高吞吐量？
+
+&gt; 提出问题：那么我们就不能先连发几个包等他一起确认吗？这样的话，我们的速度会不会更快，吞吐量更高些呢？
+
+
+
+![改进方案](https://user-gold-cdn.xitu.io/2019/3/30/169cd8c84bc6e732?w=841&amp;h=345&amp;f=png&amp;s=133907)
+
+如图，这个就是我们把两个包一起发送，然后一起确认。可以看出我们改进的方案比之前的好很多，所花的时间只是一个来回的时间。接下来，我们还有一个问题：改善了吞吐量的问题
+
+
+
+## 问题三：如何实现最优解？
+
+&gt; 问题：我们每次需要发多少个包过去呢？发送多少包是最优解呢？
+
+我们能不能把第一个和第二个包发过去后，收到第一个确认包就把第三个包发过去呢？而不是去等到第二个包的确认包才去发第三个包。这样就很自然的产生了我们"滑动窗口"的实现。
+
+![实现](https://user-gold-cdn.xitu.io/2019/3/30/169cd8c84bee5e77?w=895&amp;h=281&amp;f=png&amp;s=92339)
+
+在图中，我们可看出灰色1号2号3号包已经发送完毕，并且已经收到Ack。这些包就已经是过去式。4、5、6、7号包是黄色的，表示已经发送了。但是并没有收到对方的Ack，所以也不知道接收方有没有收到。8、9、10号包是绿色的。是我们还没有发送的。这些绿色也就是我们接下来马上要发送的包。 可以看出我们的窗口正好是11格。后面的11-16还没有被读进内存。要等4号-10号包有接下来的动作后，我们的包才会继续往下发送。
+
+
+
+### 正常情况
+
+
+
+![正常情况](https://user-gold-cdn.xitu.io/2019/3/30/169cd8c84c05c552?w=861&amp;h=194&amp;f=png&amp;s=45184)
+
+可以看到4号包对方已经被接收到，所以被涂成了灰色。“窗口”就往右移一格，这里只要保证“窗口”是7格的。 我们就把11号包读进了我们的缓存。进入了“待发送”的状态。8、9号包已经变成了黄色，表示已经发送出去了。接下来的操作就是一样的了，确认包后，窗口往后移继续将未发送的包读进缓存，把“待发送“状态的包变为”已发送“。
+
+
+
+### 丢包情况
+
+有可能我们包发过去，对方的Ack丢了。也有可能我们的包并没有发送过去。从发送方角度看就是我们没有收到Ack。
+
+![丢包](https://user-gold-cdn.xitu.io/2019/3/30/169cd8c84c92d41b?w=859&amp;h=222&amp;f=png&amp;s=59761)
+
+发生的情况：一直在等Ack。如果一直等不到的话，我们也会把读进缓存的待发送的包也一起发过去。但是，这个时候我们的窗口已经发满了。所以并不能把12号包读进来，而是始终在等待5号包的Ack。
+
+
+
+&gt; 如果我们这个Ack始终不来怎么办呢？
+
+### 超时重发
+
+这时候我们有个解决方法：`超时重传` 这里有一点要说明：这个Ack是要按顺序的。必须要等到5的Ack收到，才会把6-11的Ack发送过去。这样就保证了滑动窗口的一个顺序。
+
+![超时重发](https://user-gold-cdn.xitu.io/2019/3/30/169cd8c84caf97fd?w=875&amp;h=207&amp;f=png&amp;s=65982)
+
+这时候可以看出5号包已经接受到Ack，后面的6、7、8号包也已经发送过去已Ack。窗口便继续向后移动。</code></pre><ul>
+<li><p>字节流服务<br>两个应用程序通过TCP连接交换8bit字节构成的字节流。TCP不在字节流中插入记录标识符。我们将这称为字节流服务（bytestreamservice）。<br>TCP对字节流的内容不作任何解释:: TCP对字节流的内容不作任何解释。TCP不知道传输的数据字节流是二进制数据，还是ASCII字符、EBCDIC字符或者其他类型数据。对字节流的解释由TCP连接双方的应用层解释。</p>
+</li>
+<li><p>7、拥塞控制</p>
+<p>名词解释</p>
+<p>开始具体介绍这些算法之前，需要先对几个名词进行一下解释</p>
+<ul>
+<li>rwnd: 接收窗口，由 TCP 的接收端确定</li>
+<li>cwnd: 拥塞窗口，由 TCP 的发送端视当前网络状况而定</li>
+</ul>
+<p>rwnd 说明了接收端当前可以接收的最大数据量，cwnd 说明了当前网络情况允许发送的最大数据量。因此，实际可以发送的最大数据量就是 <code>min(rwnd, cwnd)</code></p>
+<ul>
+<li><a href="https://zh.wikipedia.org/wiki/最大分段大小" target="_blank" rel="noopener">MSS (Maximum Segment Size): 最大分段大小</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/來回通訊延遲" target="_blank" rel="noopener">RTT (Round Trip Time): 网络往返时间</a></li>
+<li>RTO (Retransmission TimeOut): 重传超时时间</li>
+<li>ssthresh: 慢启动门限，如果当前拥塞窗口小于此值则触发慢启动（就是快速增长），其初始值是由系统定义的</li>
+</ul>
+<h2 id="慢启动"><a href="#慢启动" class="headerlink" title="慢启动"></a>慢启动</h2><p>在网络中，如果某个路由器节点没有能够及时的将数据传递出去，那么这些数据将会挤压在路由器的缓存内，等待稍后处理。而如果挤压的数据量超过路由器缓存的承载量的话，多余的数据将会被直接丢弃。</p>
+<p>为了防止大量的数据导致网络阻塞，一个新建立的连接在开始的时候会将 cwnd 初始化为 1，即只会发送一个 MSS 的数据，然后随着报文段被确认而逐渐增长。这也是慢启动这个名称的来源。</p>
+<p>虽然起点很低，但是 cwnd 是指数级增长的，每次报文被确认都会在原有的基础上乘 2。</p>
+<ol>
+<li>初始 -&gt; cwnd = 1</li>
+<li>经过一个 RTT -&gt; cwnd = 1 * 2 = 2</li>
+<li>经过两个 RTT -&gt; cwnd = 2 * 2 = 4</li>
+<li>经过三个 RTT -&gt; cwnd = 4 * 2 = 8 ……</li>
+</ol>
+<p>可见，虽然 cwnd 的初始值很小，但是增长极快，很快就会达到一个很大的数字。</p>
+<h2 id="拥塞避免"><a href="#拥塞避免" class="headerlink" title="拥塞避免"></a>拥塞避免</h2><p>前面提到，慢启动的增长速度极快，因此如果一直使用慢启动的话，网络必定是承受不住的。因此需要一个限制来确保传输不会过快，这个限制就是 ssthresh，而这个限制的过程就是拥塞避免。</p>
+<p>在当前的 cwnd 值小于 ssthresh 时，TCP 执行慢启动，以极快的速度增长。当 cwnd 值达到（即大于等于） ssthresh 时，开始执行拥塞避免。在此阶段，每经过一个 RTT，cwnd 将不再在原有基础上乘 2，而是在原有基础上加 1。从而由指数增长转为线性增长。</p>
+<h2 id="如果出现了丢包"><a href="#如果出现了丢包" class="headerlink" title="如果出现了丢包"></a>如果出现了丢包</h2><p>上面的两个算法确实能让 TCP 较快的开始，同时在某个阈值之后放慢增长速度，从而不至于爆炸增长。但是，线性增长也是在增长，当到达网络的极限之后，就会出现丢包。</p>
+<p>当 TCP 超过 RTO 还没有收到对数据的确认的话，将会调整自己的发送速率，主要做以下几件事：</p>
+<ul>
+<li>将此次连接的 ssthresh 设置为当前 cwnd 值的一半</li>
+<li>将 cwnd 值设置为 1，重新进入慢启动阶段</li>
+</ul>
+</li>
+<li><h2 id="快重传"><a href="#快重传" class="headerlink" title="快重传"></a>快重传</h2><p>以上的两个算法基本已经可以尽可能的提高网络的利用率了，但还是有可以优化的地方。网络环境瞬息万变，如果每个包的丢失都要等一个 RTO 才能重传的话，会浪费很多时间。</p>
+<p>从我之前的博客<a href="https://meik2333.com/posts/tcp-sliding-window/" target="_blank" rel="noopener">《TCP 的滑动窗口》</a>可以看出，TCP 会同时发送多个包，但对每个包的确认并不是这个包的字节编号，而是已经完整收到的最后一个包的下一个字节。</p>
+<p>也就是说，如果发送了 1、2、3、4、5 五个包，1 到达的时候确认编号将是 2；如果此时 3 早于 2 到达，那么确认号将仍是 2 而不是 4。如果 2 丢失了的话，3、4、5 到达，将会产生三个编号为 2 的确认。</p>
+<p>快重传就利用了这个特性，当发送端连续收到 3 个重复的 ACK 时，将会触发快重传机制。发送端立即重发丢失的包，然后进入快恢复阶段。</p>
+<h2 id="快恢复"><a href="#快恢复" class="headerlink" title="快恢复"></a>快恢复</h2><ol>
+<li>将 ssthresh 设置为当前 cwnd 值的一半</li>
+<li>将 cwnd 的值设置为 ssthresh + 3，加 3 是因为收到了三个重复的 ACK，表示有三个“老”的数据包离开了网络</li>
+<li>之后如果继续收到重复的 ACK 的话，每个重复的 ACK 将导致当前 cwnd + 1</li>
+<li>当收到一个新的 ACK 的时候，快恢复结束。将 cwnd 的值设置为 ssthresh，重新进入拥塞避免阶段</li>
+</ol>
 </li>
 </ul>
 <h4 id="2-ISO模型和TCP-IP模型，其中的协议"><a href="#2-ISO模型和TCP-IP模型，其中的协议" class="headerlink" title="2.ISO模型和TCP/IP模型，其中的协议"></a>2.ISO模型和TCP/IP模型，其中的协议</h4><table>
@@ -2993,6 +3172,11 @@ void LSDSort(int *a, int n)
 <h3 id="9-LRU"><a href="#9-LRU" class="headerlink" title="9.LRU"></a>9.LRU</h3><p><a href="https://leetcode-cn.com/problems/lru-cache/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/lru-cache/</a></p>
 <h3 id="10-洗牌算法"><a href="#10-洗牌算法" class="headerlink" title="10.洗牌算法"></a>10.洗牌算法</h3><p><a href="https://blog.csdn.net/qq_26399665/article/details/79831490" target="_blank" rel="noopener">https://blog.csdn.net/qq_26399665/article/details/79831490</a></p>
 <h3 id="11-两个线程同时对int-a-0进行a-一百次最后的结果可能为多少"><a href="#11-两个线程同时对int-a-0进行a-一百次最后的结果可能为多少" class="headerlink" title="11.两个线程同时对int a=0进行a++一百次最后的结果可能为多少?"></a>11.两个线程同时对int a=0进行a++一百次最后的结果可能为多少?</h3><p><a href="https://blog.csdn.net/qq_41594146/article/details/87433065?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control" target="_blank" rel="noopener">https://blog.csdn.net/qq_41594146/article/details/87433065?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control</a></p>
+<h3 id="12-给你一个-5L-和-3L-桶，水无限多，怎么到出-4L。"><a href="#12-给你一个-5L-和-3L-桶，水无限多，怎么到出-4L。" class="headerlink" title="12.给你一个 5L 和 3L 桶，水无限多，怎么到出 4L。"></a>12.给你一个 5L 和 3L 桶，水无限多，怎么到出 4L。</h3><p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://img2018.cnblogs.com/blog/1306719/201812/1306719-20181216162033668-402827505.png" alt="img"></p>
+<h3 id="13-一个饼，一把刀无限长，划9刀，最少多少块，最多多少块"><a href="#13-一个饼，一把刀无限长，划9刀，最少多少块，最多多少块" class="headerlink" title="13.一个饼，一把刀无限长，划9刀，最少多少块，最多多少块"></a>13.一个饼，一把刀无限长，划9刀，最少多少块，最多多少块</h3><p>n为刀数</p>
+<p>最多块数：f(n-1) + n</p>
+<p>最少：平行切</p>
+<h3 id="14-按行遍历和按列遍历的区分"><a href="#14-按行遍历和按列遍历的区分" class="headerlink" title="14.按行遍历和按列遍历的区分"></a>14.按行遍历和按列遍历的区分</h3><p><strong>行优先（Row-major）或者列优先（Column-major）没有好坏，但其直接涉及到对内存中数据的最佳存储访问方式</strong>。因为<strong>在内存使用上，程序访问的内存地址之间连续性越好，程序的访问效率就越高；相应地，程序访问的内存地址之间连续性越差。所以，我们应该尽量在行优先机制的编译器</strong>，</p>
 <h1 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h1><h4 id="1-git-merge和rebase的区别"><a href="#1-git-merge和rebase的区别" class="headerlink" title="1.git merge和rebase的区别"></a><strong>1.git merge和rebase的区别</strong></h4><p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://segmentfault.com/img/bVbriWt?w=890&amp;h=418" alt="clipboard.png"></p>
 <p>merge会进行一个三方合并，共同祖先和两个分支的最新提交，生成一个新的conmmit</p>
 <p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://segmentfault.com/img/bVbriWu?w=882&amp;h=472" alt="clipboard.png"></p>
@@ -3912,7 +4096,7 @@ void test1() {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">33k</span>
+            <span class="white-color">34.9k</span>
             
 
             <br>
