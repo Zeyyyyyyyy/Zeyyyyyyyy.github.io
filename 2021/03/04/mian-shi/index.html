@@ -295,7 +295,7 @@ static作用">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -450,7 +450,7 @@ static作用">
                 
                 <div class="info-break-policy">
                     <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    26.1k
+                    26.2k
                 </div>
                 
 
@@ -738,6 +738,7 @@ private:
 </li>
 <li><p>epoll==&gt;时间复杂度O(1)</p>
 <p><strong>epoll可以理解为event poll</strong>，不同于忙轮询和无差别轮询，epoll会把哪个流发生了怎样的I/O事件通知我们。所以我们说epoll实际上是<strong>事件驱动（每个事件关联上fd）</strong>的，此时我们对这些流的操作都是有意义的。<strong>（复杂度降低到了O(1)）</strong></p>
+<p>具体为通过epoll_ wait采用回调，每当检测就绪文件描述符就触发回调，回调函数就将该文件描述符插入内核就绪队列，内核最后在合适时机将就绪事件队列拷贝到用户空间。</p>
 </li>
 <li><p>select，poll，epoll都是IO多路复用的机制。I/O多路复用就通过一种机制，可以监视多个描述符，一旦某个描述符就绪（一般是读就绪或者写就绪），能够通知程序进行相应的读写操作。<strong>但select，poll，epoll本质上都是同步I/O，因为他们都需要在读写事件就绪后自己负责进行读写，也就是说这个读写过程是阻塞的</strong>，而异步I/O则无需自己负责进行读写，异步I/O的实现会负责把数据从内核拷贝到用户空间。 </p>
 </li>
@@ -885,6 +886,7 @@ private:
 <p>递归调用函数，形参由多至少，一般采用递归方式使用，可参照tuple遍历方式</p>
 <pre><code>template &lt;class... T&gt;</code></pre></li>
 </ul>
+<h5 id="C-17"><a href="#C-17" class="headerlink" title="C++17"></a>C++17</h5><p>结构化绑定： for(auto&amp; [k, v] : hash)</p>
 <h5 id="C-20"><a href="#C-20" class="headerlink" title="C++ 20"></a>C++ 20</h5><ul>
 <li><p>概念（concept）</p>
 <p>可以方式模板参数不满足鸭子类型（通过对象方法决定类型）的约束时编译器不再报错</p>
@@ -1084,7 +1086,7 @@ struct mem_control_block {
 </li>
 </ul>
 <h4 id="32-strcpy存在什么安全问题？"><a href="#32-strcpy存在什么安全问题？" class="headerlink" title="32.strcpy存在什么安全问题？"></a>32.strcpy存在什么安全问题？</h4><h4 id="手写strcpy并做优化。源码为什么这么实现？"><a href="#手写strcpy并做优化。源码为什么这么实现？" class="headerlink" title="手写strcpy并做优化。源码为什么这么实现？"></a>手写strcpy并做优化。<a href="https://www.nowcoder.com/jump/super-jump/word?word=源码" target="_blank" rel="noopener">源码</a>为什么这么实现？</h4><ul>
-<li><p>一是若str1灭有足够存储空间存’\0’,无法确定strcpy跑到哪里</p>
+<li><p>一是若str1没有足够存储空间存’\0’,无法确定strcpy跑到哪里</p>
 </li>
 <li><p>二是假如不足，可能会覆盖其他空间，这个是致命的</p>
 <p>因此一般采用strncpy</p>
@@ -1302,7 +1304,7 @@ struct mem_control_block {
 </li>
 </ul>
 <h4 id="5-STL迭代器的作用，为什么有指针还要用迭代器"><a href="#5-STL迭代器的作用，为什么有指针还要用迭代器" class="headerlink" title="5.STL迭代器的作用，为什么有指针还要用迭代器"></a>5.STL迭代器的作用，为什么有指针还要用迭代器</h4><ul>
-<li>迭代器不是指针，是类模板，表现的像指针，知识模拟了指针的功能，重载了指针的一些操作符，-&gt;, * , ++, –等；</li>
+<li>迭代器不是指针，是类模板，表现的像指针，模拟了指针的功能，重载了指针的一些操作符，-&gt;, * , ++, –等；</li>
 <li>迭代器封装了指针，是一个可遍历STL容器内全部或者部分元素的对象，本质上封装了原声指针，比指针更高级，相当于只能指针</li>
 <li>迭代器返回的是引用，而不是对象的值</li>
 <li>vector动态增加空间时，并不是在原空间之后增加新的空间，而是以原来大小的两倍或者原空间加上实际所需的空间的大小另外配置一片较大的空间，释放原来的空间。由于操作改变了空间，所以原来的迭代器失效</li>
@@ -1391,7 +1393,7 @@ struct mem_control_block {
 <li>由于删除元素，使得某些元素<code>次序</code>发生变化导致原本指向某元素的迭代器不再指向期望指向的元素。</li>
 </ul>
 <h3 id="11-deque的原理"><a href="#11-deque的原理" class="headerlink" title="11.deque的原理"></a>11.deque的原理</h3><p>双端队列(deque)是一种支持向两端高效地插入数据、支持随机访问的容器。其内部实现原理如下：双端队列的数据被表示为一个分段数组，容器中的元素分段存放在一个个大小固定的数组中，此外容器还需要维护一个存放这些数组首地址的索引数组。参见下图</p>
-<p><a href="https://ivanzz1001.github.io/records/assets/img/cplusplus/cpp_stl_iterator.jpg" target="_blank" rel="noopener"><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://ivanzz1001.github.io/records/assets/img/cplusplus/cpp_stl_iterator.jpg" alt="cpp-stl-iterator"></a></p>
+<p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://ivanzz1001.github.io/records/assets/img/cplusplus/cpp_stl_iterator.jpg" alt="">]</p>
 <p>由于分段数组的大小是固定的，并且它们的首地址被连续存放在索引数组中，因此可以对其进行随机访问，但效率比vector低很多。</p>
 <ul>
 <li>向两端加入新元素时，如果这一端的分段数组未满，则可以直接加入； 如果这一端的分段数组已满，只需创建新的分段数组，并把该分段数组的地址加入到索引数组中即可。无论哪种情况，都不需要对已有元素进行移动，因此在双端队列的两端加入新的元素都具有较高的效率。</li>
@@ -2468,7 +2470,7 @@ int main(){
 <h4 id="10-Socket网络编程"><a href="#10-Socket网络编程" class="headerlink" title="10.Socket网络编程"></a>10.Socket网络编程</h4><h5 id="长连接与短连接"><a href="#长连接与短连接" class="headerlink" title="长连接与短连接"></a>长连接与短连接</h5><p>所谓长连接，指在一个TCP连接上可以连续发送多个数据包，在TCP连接保持期间，如果没有数据包发送，需要双方发检测包以维持此连接，一般需要自己做在线维持。<br>短连接是指通信双方有数据交互时，就建立一个TCP连接，数据发送完成后，则断开此TCP连接，一般银行都使用短连接。<br>比如http的，只是连接、请求、关闭，过程时间较短,服务器若是一段时间内没有收到请求即可关闭连接。<br>其实长连接是相对于通常的短连接而说的，也就是长时间保持客户端与服务端的连接状态。</p>
 <p><a href="https://blog.csdn.net/u012707739/article/details/75918894" target="_blank" rel="noopener">https://blog.csdn.net/u012707739/article/details/75918894</a></p>
 <p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://img-blog.csdn.net/20170723162227540?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjcwNzczOQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="TCP socket 函数流程"></p>
-<h4 id="11-GET和POST的区别"><a href="#11-GET和POST的区别" class="headerlink" title="11.GET和POST的区别"></a>11.GET和POST的区别</h4><p>GET在浏览器回退时是无害的，而POST会再次提交请求。<br>GET产生的URL地址可以被Bookmark，而POST不可以。<br>GET请求会被浏览器主动cache，而POST不会，除非手动设置。<br>GET请求只能进行url编码，而POST支持多种编码方式。<br>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。<br>GET请求在URL中传送的参数是有长度限制的，而POST么有。<br>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。<br>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。<br>GET参数通过URL传递，POST放在Request body中。</p>
+<h4 id="11-GET和POST的区别"><a href="#11-GET和POST的区别" class="headerlink" title="11.GET和POST的区别"></a>11.GET和POST的区别</h4><p>GET在浏览器回退时是无害的，而POST会再次提交请求。<br>GET产生的URL地址可以被Bookmark，而POST不可以。<br>GET请求会被浏览器主动cache，而POST不会，除非手动设置。<br>GET请求只能进行url编码，而POST支持多种编码方式。<br>GET请求参数会被完整保留在浏览器历史记录里，而POST中的参数不会被保留。<br>GET请求在URL中传送的参数是有长度限制的，而POST没有。<br>对参数的数据类型，GET只接受ASCII字符，而POST没有限制。<br>GET比POST更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息。<br>GET参数通过URL传递，POST放在Request body中。</p>
 <p>对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；</p>
 <p>而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。</p>
 <p>也就是说，GET只需要汽车跑一趟就把货送到了，而POST得跑两趟，第一趟，先去和服务器打个招呼“嗨，我等下要送一批货来，你们打开门迎接我”，然后再回头把货送过去。</p>
@@ -3177,6 +3179,30 @@ void LSDSort(int *a, int n)
 <p>最多块数：f(n-1) + n</p>
 <p>最少：平行切</p>
 <h3 id="14-按行遍历和按列遍历的区分"><a href="#14-按行遍历和按列遍历的区分" class="headerlink" title="14.按行遍历和按列遍历的区分"></a>14.按行遍历和按列遍历的区分</h3><p><strong>行优先（Row-major）或者列优先（Column-major）没有好坏，但其直接涉及到对内存中数据的最佳存储访问方式</strong>。因为<strong>在内存使用上，程序访问的内存地址之间连续性越好，程序的访问效率就越高；相应地，程序访问的内存地址之间连续性越差。所以，我们应该尽量在行优先机制的编译器</strong>，</p>
+<h3 id="15-A-算法"><a href="#15-A-算法" class="headerlink" title="15.A*算法"></a>15.A*算法</h3><p>A*算法通过下面这个函数来计算每个节点的优先级。</p>
+<p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://pic3.zhimg.com/80/v2-3c1f00587f5f8994946cf1d224419bba_720w.png" alt="img"></p>
+<p>其中：</p>
+<ul>
+<li>f(n)是节点n的综合优先级。当我们选择下一个要遍历的节点时，我们总会选取综合优先级最高（值最小）的节点。</li>
+<li>g(n) 是节点n距离起点的代价。</li>
+<li>h(n)是节点n距离终点的预计代价，这也就是A*算法的启发函数。关于启发函数我们在下面详细讲解。</li>
+</ul>
+<p>A*算法在运算过程中，每次从优先队列中选取f(n)值最小（优先级最高）的节点作为下一个待遍历的节点。</p>
+<h4 id="启发函数"><a href="#启发函数" class="headerlink" title="启发函数"></a>启发函数</h4><p>上面已经提到，启发函数会影响A*算法的行为。</p>
+<ul>
+<li>在极端情况下，当启发函数h(n)始终为0，则将由g(n)决定节点的优先级，此时算法就退化成了Dijkstra算法。</li>
+<li>如果h(n)始终小于等于节点n到终点的代价，则A*算法保证一定能够找到最短路径。但是当h(n)的值越小，算法将遍历越多的节点，也就导致算法越慢。</li>
+<li>如果h(n)完全等于节点n到终点的代价，则A*算法将找到最佳路径，并且速度很快。可惜的是，并非所有场景下都能做到这一点。因为在没有达到终点之前，我们很难确切算出距离终点还有多远。</li>
+<li>如果h(n)的值比节点n到终点的代价要大，则A*算法不能保证找到最短路径，不过此时会很快。</li>
+<li>在另外一个极端情况下，如果h()n相较于g(n)大很多，则此时只有h(n)产生效果，这也就变成了最佳优先搜索。</li>
+</ul>
+<p>由上面这些信息我们可以知道，通过调节启发函数我们可以控制算法的速度和精确度。因为在一些情况，我们可能未必需要最短路径，而是希望能够尽快找到一个路径即可。这也是A*算法比较灵活的地方。</p>
+<p>对于网格形式的图，有以下这些启发函数可以使用：</p>
+<ul>
+<li>如果图形中只允许朝上下左右四个方向移动，则可以使用曼哈顿距离（Manhattan distance）。</li>
+<li>如果图形中允许朝八个方向移动，则可以使用对角距离。</li>
+<li>如果图形中允许朝任何方向移动，则可以使用欧几里得距离（Euclidean distance）。</li>
+</ul>
 <h1 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h1><h4 id="1-git-merge和rebase的区别"><a href="#1-git-merge和rebase的区别" class="headerlink" title="1.git merge和rebase的区别"></a><strong>1.git merge和rebase的区别</strong></h4><p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://segmentfault.com/img/bVbriWt?w=890&amp;h=418" alt="clipboard.png"></p>
 <p>merge会进行一个三方合并，共同祖先和两个分支的最新提交，生成一个新的conmmit</p>
 <p><img src="/medias/loading.gif# eg ./images/loading.gif" data-original="https://segmentfault.com/img/bVbriWu?w=882&amp;h=472" alt="clipboard.png"></p>
@@ -3274,17 +3300,20 @@ void LSDSort(int *a, int n)
 <h4 id="7-Valgrind检测用法："><a href="#7-Valgrind检测用法：" class="headerlink" title="7.Valgrind检测用法："></a>7.Valgrind检测用法：</h4><p><a href="http://senlinzhan.github.io/2017/12/31/valgrind/" target="_blank" rel="noopener">http://senlinzhan.github.io/2017/12/31/valgrind/</a></p>
 <h4 id="8-linux命令："><a href="#8-linux命令：" class="headerlink" title="8.linux命令："></a>8.linux命令：</h4><h5 id="top"><a href="#top" class="headerlink" title="top"></a>top</h5><p>概述：top命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器。<br>可以直接使用top命令后，查看%MEM的内容。可以选择按进程查看或者按用户查看，如想查看oracle用户的进程内存使用情况的话可以使用如下的命令：</p>
 <h5 id="pmap"><a href="#pmap" class="headerlink" title="pmap"></a>pmap</h5><p>可以根据进程查看进程相关信息占用的内存情况，(进程号可以通过ps查看)如下所示：<br>　　pmap -d 14596</p>
-<h3 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h3><p>作用：ps显示瞬间进程 (process) 的动态，使用权限是所有使用者。</p>
+<h5 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h5><p>作用：ps显示瞬间进程 (process) 的动态，使用权限是所有使用者。</p>
 <h5 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h5><p>概要：</p>
 <p><strong>grep</strong>全称是Global Regular Expression Print，表示全局正则表达式版本，它的使用权限是所有用户。<br><strong>grep</strong>命令可以<strong>指定文件中搜索特定的内容，并将含有这些内容的行标准输出。</strong></p>
-<h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><p>概要：<strong>把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理</strong>。</p>
-<h3 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h3><p>概要：Linux sed命令是利用script来处理文本文件。<br>sed可依照script的指令，来处理、编辑文本文件。<br>Sed主要用来自动编辑一个或多个文件；简化对文件的反复操作；编写转换程序等。</p>
+<h5 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h5><p>概要：<strong>把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理</strong>。</p>
+<h5 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h5><p>概要：Linux sed命令是利用script来处理文本文件。<br>sed可依照script的指令，来处理、编辑文本文件。<br>Sed主要用来自动编辑一个或多个文件；简化对文件的反复操作；编写转换程序等。</p>
 <h5 id="awk、sed、grep对比"><a href="#awk、sed、grep对比" class="headerlink" title="awk、sed、grep对比"></a>awk、sed、grep对比</h5><ul>
 <li>grep 更适合单纯的查找或匹配文本</li>
 <li>sed 更适合编辑匹配到的文本</li>
 <li>awk 更适合格式化文本，对文本进行较复杂格式处理</li>
 </ul>
-<h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h3><p>概要：删除一个目录中的一个或多个文件或目录，如果</p>
+<h5 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h5><p>概要：删除一个目录中的一个或多个文件或目录，如果</p>
+<h5 id="wcl"><a href="#wcl" class="headerlink" title="wcl"></a>wcl</h5><p>-c <strong>统计</strong>字节<strong>数</strong>。</p>
+<p>-l <strong>统计行数</strong>。</p>
+<p>-w <strong>统计</strong>字数。</p>
 <h1 id="设计模式："><a href="#设计模式：" class="headerlink" title="设计模式："></a>设计模式：</h1><h4 id="1-单例模式，多线程安全问题，怎么保证只有唯一实例"><a href="#1-单例模式，多线程安全问题，怎么保证只有唯一实例" class="headerlink" title="1.单例模式，多线程安全问题，怎么保证只有唯一实例"></a><strong>1.单例模式，多线程安全问题，怎么保证只有唯一实例</strong></h4><p><a href="https://steverao.github.io/2018/12/12/Singleton-Pattern-in-Multithreaded/" target="_blank" rel="noopener">https://steverao.github.io/2018/12/12/Singleton-Pattern-in-Multithreaded/</a></p>
 <p><a href="https://neo00.top/archives/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F" target="_blank" rel="noopener">https://neo00.top/archives/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F</a></p>
 <pre class="line-numbers language-c++"><code class="language-c++">class Singleton_lazy {
@@ -3854,7 +3883,7 @@ void test1() {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="布隆过滤器">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="布隆过滤器">
                         
                         <span class="card-title">布隆过滤器</span>
                     </div>
@@ -3903,7 +3932,7 @@ void test1() {
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="EngLish Learn">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="EngLish Learn">
                         
                         <span class="card-title">EngLish Learn</span>
                     </div>
@@ -3922,8 +3951,8 @@ void test1() {
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/英语学习/" class="post-category" target="_blank">
-                                    英语学习
+                            <a href="/categories/英语/" class="post-category" target="_blank">
+                                    英语
                                 </a>
                             
                             
@@ -4096,7 +4125,7 @@ void test1() {
 
             
             &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-            <span class="white-color">34.9k</span>
+            <span class="white-color">35.3k</span>
             
 
             <br>
